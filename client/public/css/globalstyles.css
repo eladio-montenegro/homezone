@@ -1,0 +1,69 @@
+h1 .black {
+    color: #252525;
+    font-family: 'Work Sans',arial sans-serif;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    }
+
+h1 .whit {
+        color: #ffffff;
+        font-family: 'Work Sans',arial sans-serif;
+        font-size: 30px;
+        margin-top: 0px;
+        margin-bottom: 1px;
+    }
+
+h2 {
+    color: #252525 !important;
+    font-family: 'Work Sans',arsial sans-serif;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    }
+
+h3 {
+    color: #252525 !important;
+    font-family: 'Work Sans',arial sans-serif !important;
+    font-size: 14px !important;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    }
+
+p{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+    color: #999999 !important;
+}
+
+li{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+}
+
+/* HomePage */
+
+.materialboxed {
+    display: block!important;
+    margin-bottom:10px;
+    
+
+}
+
+
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+
+  .containimg {
+    position: relative;
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+  }
+
+  .lightgrey-backcolor {
+
+    background-color:rgb(233, 233, 233) !important;
+  }
