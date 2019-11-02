@@ -1,7 +1,90 @@
 .jumbotron{
     width:100%;
-    height: 200px !important;
+    height:450px !important;
     background-image: linear-gradient(to bottom right,#00BDAA, #A1DD70);
+}
 
+@media only screen and (max-width: 600px) {
+
+    .jumbotron{
+    height:300px !important;
+    }
+
+}
+
+
+.jumboall{
+    margin: auto;
+    width: 50%;
+    margin-top: 100px;
+}
+
+.jumbotext{
+    float:left;
+    
+}
+
+
+.jumbotitle {
+    color: #ffffff !important;
+    font-size: 50px;
+    margin-bottom: 1px;
+    font-family: 'Baloo Bhai', cursive;
+    margin-top: 10px !important;
+
+}
+
+
+.jumbotitlepill {
+    padding:10px;
+    border-radius: 40px;
+    display:inline-block;
+    background-color: rgb(143, 28, 189);
+    transform: rotate(-10deg);
+}
+
+
+.jumbotron h3 {
+    color:rgb(255, 255, 255) !important;
+    text-align:center;
+    margin-bottom:20px;
+    margin-top:10px;
+    transform: rotate(-10deg);
+
+
+}
+
+@media only screen and (max-width: 600px) {
+    .jumbotron h3 {
+        color:rgb(255, 255, 255) !important;
+        text-align:center;
+        margin-bottom:20px;
+        margin-top:10px;
+        transform: rotate(-10deg);
+    
+    }
+
+}
+
+.jumboicon{
+    float: left;
+    margin-top: 30px;
+    width: 300px;
+    margin-left:10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .jumboicon{
+        display: none;
+        width: 150px;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .jumboicon{
+        width: 200px;
+        margin-left:100px;
+    }
 
 }

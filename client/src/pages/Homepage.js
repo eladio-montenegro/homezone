@@ -6,50 +6,50 @@ import { CheckList,CheckListItem } from "../components/Checklist";
 import CTABtn from "../components/CTABtn";
 import ImageCard from "../components/ImageCard";
 import ImgCarasol from "../components/ImgCarasol";
+import Footer from "../components/Footer";
+import { cpus } from "os";
 
 class Homepage extends Component {
 
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="s12">
-            <Jumbotron>
-              <h1 class="whit">
-               HomeZone
-              </h1>
-
-            </Jumbotron>
+        <Row margin="no-margin">
+          <Col size="s12" offset="offset-s3">
+            
+                <Jumbotron title="HomeZone" subtitle="Connect with your foster family!" jumboicon="\img\home1-svg.png">
+                </Jumbotron>
+            
           </Col>
         </Row>
 
-        <Row>
+        <Row  margin="no-margin">
         
-        <Col size="col s3" offset="offset-s2">
- 
-                <p></p>
+        <Col size="col s6" offset=" " margin="no-margin">
+
+                <a href="www.google.com"> 
                 <div class="containimg" >
-                    <img class="materialboxed" height="300px" width="360px" src="img/fosteryouth1.jpg"></img>
-                    <div class="bottom-left">Foster Kid or Teen</div>
-                </div>
-    
+                <img class="materialboxed responsive" src="img/fosteryouth1.jpg"></img>
+                <div class="bottom-left">I am a Foster Kid or Teen</div>
+                </div> 
+                </a>
+
                 </Col>
 
-                <Col size="col s3" offset="offset-s2">
-                <p></p>
+                <Col size="col s6" offset=" " margin="no-margin">
+
+                <a href="www.google.com">
                 <div class="containimg">
-                    <img class="materialboxed parent" height="300px" width="360px"  src="img/fosterparent2.jpg"></img>
-                    <div class="bottom-left">Foster Parent</div>
+                    <img class="materialboxed parent responsive" src="img/fosterparent2.jpg" height="50%"></img>
+                    <div class="bottom-left">I am a Foster Parent</div>
                 </div>
+                </a>
                 </Col>
-
-
-
-
-
+  
         </Row>
-        <Row>
-          <Col size="col s5" offset="offset-s2">
+        <Row tall="full">
+          <Col size="col s12 m6" offset="offset-m2">
+     
           
           <h2 >HomeZone connects Foster Families</h2>
           <p>Anyone involved in foster care knows that it can be tough connecting with people you barely know. HomeZone let's foster homes and kids and familes create a profile that sticks with them throughout their fostering journey where you can:</p>
@@ -66,13 +66,14 @@ class Homepage extends Component {
                 <CheckListItem color="gre">Help kids plan goals</CheckListItem>
                 <CheckListItem color="gre">Recieve updates and notes from foster kids</CheckListItem>
             </CheckList>
+    
           </Col>
 
           
         </Row>
       
 
-        <Row backcolor="lightgrey-backcolor">
+        <Row backcolor="lightgrey-backcolor" tall="full">
             <Col size="col s8" offset="offset-s2">
                 <h2 >Features</h2>
                 <ImgCarasol
@@ -83,12 +84,15 @@ class Homepage extends Component {
                     img3="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?v=1530129081"
                     title3="Shared Journal">
                 </ImgCarasol>
+                <p></p>
+                <p></p>
+                <p></p>
 
             </Col>
         </Row>
 
         <Row>
-            <Col size="col s8" offset="offset-s2">
+            <Col size="col s12 m8 " offset="offset-m2">
                 <h2 >Meet The Team</h2>
                 <p className="col s9">This conceptual app was created using the MERN stack and involved Node.js, Javascript, React.js, Express Server, MongoDB, Mongoose, Passport, HTML, CSS, and Materialize.</p>
                 <ImageCard 
@@ -119,8 +123,9 @@ class Homepage extends Component {
 
         </Row>
 
-        
+        <Footer></Footer>
       </Container>
+    
     );
   }
 }

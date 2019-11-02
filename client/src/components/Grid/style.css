@@ -1,0 +1,25 @@
+
+  .no-margin {
+
+    padding: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 0px !important;
+  }
+
+  
+  .lightgrey-backcolor {
+
+    background-color:rgb(233, 233, 233) !important;
+  }
+
+  .full{
+    padding-top: 100px;
+    height:800px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .fill {
+        height: auto;
+    
+    }
+
+}

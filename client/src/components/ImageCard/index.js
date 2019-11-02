@@ -4,7 +4,7 @@ import "./style.css";
 function ImageCard({ title,imagesrc,content,action,link}) {
   return (
   
-    <div className="col s4">
+    <div className="col m4 s6">
       <div class="card">
         <div class="card-image">
           <img src={imagesrc}/> 
