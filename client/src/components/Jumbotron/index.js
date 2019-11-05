@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Col, Row, Container } from "../components/Grid";
 
 function Jumbotron({ title,subtitle, jumboicon}) {
   return (

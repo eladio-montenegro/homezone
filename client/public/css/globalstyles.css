@@ -5,14 +5,6 @@ h1 .black {
     margin-top: 0px;
     margin-bottom: 1px;
     }
-.jumbotitle {
-        color: #ffffff !important;
-        font-family: 'Work Sans',arial sans-serif;
-        font-size: 50px;
-        margin-top: 50px;
-        margin-bottom: 1px;
-    }
-
 
 h2 {
     color: #444444 !important;
@@ -46,8 +38,6 @@ li{
 .materialboxed {
     display: block!important;
     margin-bottom:10px;
-    
-
 }
 
 .bottom-left {
