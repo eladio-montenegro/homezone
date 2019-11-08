@@ -10,7 +10,7 @@ import ParentSignUp from "./pages/ParentSignUp";
 import ParentPortal from "./pages/ParentPortal";
 import KidSignUp from "./pages/KidSignUp";
 import Login from "./pages/Login";
-import ChildView from "./components/ChildView";
+import ChildView from "./components/ChildView/MyGoals";
 import KidPortal from "./pages/KidPortal";
 
 function App() {

@@ -1,6 +1,6 @@
 import React from "react";
-import API from "../../utils/API.js";
-import { CheckList,CheckListItem } from "../Checklist";
+import API from "../../../utils/API.js";
+import { CheckList,CheckListItem } from "../../Checklist";
 import "./style.css";
 
 
