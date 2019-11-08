@@ -483,7 +483,7 @@ function Step5(props) {
     
 
     </div>
-    <button className="btn btn-success btn-block successbutton">Go to Account</button>
+    <a href="/KidPortal" className="btn btn-success btn-block successbutton">Go to Account</a>
     </React.Fragment>
   );
 }
