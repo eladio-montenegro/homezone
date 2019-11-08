@@ -14,7 +14,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
-        <Nav />
+    
       <Container fluid>
         <Row margin="no-margin">
           <Col size="s12" offset="offset-s3">
