@@ -3,11 +3,6 @@ import "./style.css";
 
 
 function Nav() {
-
-
-
-
-
   return (
     <div className="nav-with-sidenav">
       <nav>
