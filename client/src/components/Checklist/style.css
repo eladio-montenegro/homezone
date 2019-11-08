@@ -1,0 +1,25 @@
+.list-overflow-container {
+  max-height: 545px;
+  border: 1px #DDDDDD solid;
+  border-radius: 4px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+.gre{
+  color: #00BDAA !important;
+  height: 35px !important;
+  line-height: 35px !important;
+  padding-right:15px;
+}
+
+.purp{
+  color: #8559A5 !important;
+  height: 35px !important;
+  line-height: 35px !important;
+  padding-right:15px;
+}
+
+
+

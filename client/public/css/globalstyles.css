@@ -1,0 +1,62 @@
+h1 .black {
+    color: #491f5a;
+    font-family: 'Work Sans',arial sans-serif;
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    }
+
+h2 {
+    color: #444444 !important;
+    font-family: 'Work Sans',arsial sans-serif;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 1px;
+    }
+
+h3 {
+    color: #252525 !important;
+    font-family: 'Work Sans',arial sans-serif !important;
+    font-size: 20px !important;
+    margin-top: 20px;
+    margin-bottom: 1px;
+    }
+
+p{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 18px !important;
+    color: #999999 !important;
+}
+
+li{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 18px !important;
+}
+
+/* HomePage Styles */
+
+.materialboxed {
+    display: block!important;
+    margin-bottom:10px;
+}
+
+.bottom-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+  }
+
+  .containimg {
+    position: relative;
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+  }
+
+
+  .responsive {
+    height:400px;
+    width:100%;
+    object-fit: cover;
+  }

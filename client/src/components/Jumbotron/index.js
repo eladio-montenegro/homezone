@@ -1,13 +1,22 @@
 import React from "react";
+import "./style.css";
 
-function Jumbotron({ children }) {
+function Jumbotron({ title,subtitle, jumboicon}) {
   return (
-    <div
-      style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-      className="jumbotron"
-    >
-      {children}
-    </div>
+    <div className="jumbotron col s12"> 
+      <div className="jumboall">
+          <div className="jumbotext">
+                <div className="jumbotitlepill">
+                  <h1 className="jumbotitle">{title}</h1>
+                </div>
+                <h3 className="subtitle">{subtitle}</h3>
+            </div>
+
+          <img className="jumboicon" src={jumboicon}/>
+        
+      </div>
+     </div>
+
   );
 }
 

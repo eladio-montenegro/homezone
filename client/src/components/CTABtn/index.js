@@ -3,12 +3,10 @@ import "./style.css";
 
 // The ...props means, spread all of the passed props onto this element
 // That way we don't have to define them all individually
-function DeleteBtn(props) {
+function CTABtn({ children }) {
   return (
-    <span className="delete-btn" {...props} role="button" tabIndex="0">
-      ✗
-    </span>
+    <a class="waves-effect waves-light btn-large">{ children }</a>
   );
 }
 
-export default DeleteBtn;
+export default  CTABtn;
