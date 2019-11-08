@@ -13,7 +13,9 @@ class ParentPortal extends Component {
     return (
       <div>
         <SideNav></SideNav>
-        <Container></Container>
+        <Container>
+          
+        </Container>
       </div>
     );
   }
