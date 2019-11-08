@@ -9,8 +9,7 @@ import SideNav from "./components/SideNav";
 import ParentSignUp from "./pages/ParentSignUp";
 import ParentPortal from "./pages/ParentPortal";
 import KidSignUp from "./pages/KidSignUp";
-import LoginForm from "./pages/LoginForm";
-import { matchPath } from 'react-router';
+import Login from "./pages/Login";
 
 function App() {
 
@@ -24,7 +23,7 @@ function App() {
           <Route exact path="/home" component={Homepage} />
           <Route exact path="/parentsignup" component={ParentSignUp}/>
           <Route exact path="/parentportal" component={ParentPortal}/>
-          <Route exact path="/login" component={LoginForm}/>
+          <Route exact path="/login" component={Login}/>
           <Route exact path="/kidsignup" component={KidSignUp}/>
           <Route exact path="/books" component={Books} />
           <Route exact path="/books/:id" component={Detail} />
