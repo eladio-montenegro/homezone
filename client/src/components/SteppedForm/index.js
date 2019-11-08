@@ -5,7 +5,6 @@ import "./style.css";
 
 
 
-
 class SteppedForm extends React.Component {
   constructor(props) {
     super(props)

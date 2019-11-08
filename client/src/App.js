@@ -10,6 +10,8 @@ import ParentSignUp from "./pages/ParentSignUp";
 import ParentPortal from "./pages/ParentPortal";
 import KidSignUp from "./pages/KidSignUp";
 import Login from "./pages/Login";
+import ChildView from "./components/ChildView";
+import KidPortal from "./pages/KidPortal";
 
 function App() {
 
@@ -17,7 +19,6 @@ function App() {
     <Router>
       <div>
        <Nav/>
-
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/home" component={Homepage} />
@@ -25,8 +26,9 @@ function App() {
           <Route exact path="/parentportal" component={ParentPortal}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/kidsignup" component={KidSignUp}/>
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
+          <Route exact path="/kidportal" component={KidPortal}/>
+          <Route exact path="/books" component={Books}/>
+          <Route exact path="/books/:id" component={Detail}/>
           <Route component={NoMatch} />
         </Switch>
       </div>
