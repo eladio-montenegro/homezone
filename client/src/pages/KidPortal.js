@@ -4,7 +4,7 @@ import Jumbotron from "../components/Jumbotron";
 import { CheckList,CheckListItem } from "../components/Checklist";
 import Footer from "../components/Footer";
 import SideNav from "../components/SideNav";
-import ChildView from "../components/ChildView/MyGoals";
+import ChildView from "../components/ChildView";
 import { cpus } from "os";
 
 class KidPortal extends Component {
