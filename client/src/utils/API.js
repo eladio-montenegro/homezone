@@ -16,5 +16,19 @@ export default {
   // Saves a book to the database
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
-  }
+  },
+
+  getParents: function() {
+    return axios.get("/api/parents");
+  },
+
+  saveParentUser: function(parentData) {
+    return axios.post("/api/parents", parentData);
+  },
+  getKids: function() {
+    return axios.get("/api/kids");
+  },
+  saveKidUser: function(kidData) {
+    return axios.post("/api/kids", kidData);
+  },
 };

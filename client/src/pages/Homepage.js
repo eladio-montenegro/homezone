@@ -13,6 +13,8 @@ class Homepage extends Component {
 
   render() {
     return (
+      <div>
+        <Nav />
       <Container fluid>
         <Row margin="no-margin">
           <Col size="s12" offset="offset-s3">
@@ -27,7 +29,7 @@ class Homepage extends Component {
         
         <Col size="col s6" offset=" " margin="no-margin">
 
-                <a href="www.google.com"> 
+                <a href="/kidsignup"> 
                 <div class="containimg" >
                 <img class="materialboxed responsive" src="img/fosteryouth1.jpg"></img>
                 <div class="bottom-left">I am a Foster Kid or Teen</div>
@@ -38,7 +40,7 @@ class Homepage extends Component {
 
                 <Col size="col s6" offset=" " margin="no-margin">
 
-                <a href="www.google.com">
+                <a href="/parentsignup">
                 <div class="containimg">
                     <img class="materialboxed parent responsive" src="img/fosterparent2.jpg" height="50%"></img>
                     <div class="bottom-left">I am a Foster Parent</div>
@@ -125,6 +127,7 @@ class Homepage extends Component {
 
         <Footer></Footer>
       </Container>
+      </div>
     
     );
   }
