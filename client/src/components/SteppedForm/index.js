@@ -26,8 +26,6 @@ class SteppedForm extends React.Component {
     }
   }
 
-
-
   handleChange = event => {
     const {name, value} = event.target
     this.setState({
@@ -36,7 +34,7 @@ class SteppedForm extends React.Component {
   }
 
 
-displayList =()=> {
+  displayList =()=> {
 
     API.getParents()
     .then(res => console.log(JSON.stringify(res.data))
