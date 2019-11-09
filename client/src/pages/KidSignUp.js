@@ -3,7 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { CheckList,CheckListItem } from "../components/Checklist";
 import KidSteppedForm from "../components/KidSteppedForm";
-import Footer from "../components/Footer";
+
 
 import { cpus } from "os";
 

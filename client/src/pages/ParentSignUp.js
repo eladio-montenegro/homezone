@@ -4,7 +4,7 @@ import Jumbotron from "../components/Jumbotron";
 import { CheckList,CheckListItem } from "../components/Checklist";
 import SteppedForm from "../components/SteppedForm";
 
-import Footer from "../components/Footer";
+
 import { cpus } from "os";
 
 class ParentSignUp extends Component {

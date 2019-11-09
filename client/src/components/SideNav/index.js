@@ -5,43 +5,54 @@ import M from 'materialize-css';
 
 class SideNav extends React.Component{
 
+  openNav = () => {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+   closeNav = () =>  {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+
+
 
   componentDidMount(){
 
-    M.Sidenav.init(this.sidenav);
-  document.addEventListener('DOMContentLoaded', function() {
-    let elems = document.querySelectorAll('.sidenav');
-   let instances = M.Sidenav.init(elems);
-  });
-}
+   
+  };
+
 
 
 render(){
   return (
-    <div className="sidenav-container">
+    <div class="sidenav-container">
       
 
-      <nav> HomeZone </nav>
+      <div id="mySidebar" class="sidebar">
+      <div class="user-view">
+      <div class="background">
+        <img class="circle" src="https://www.bluemaumau.org/sites/default/files/default_images/default.png" height="100px" width="100px"></img>
+      </div>
 
-      <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-          <div class="background">
-            <img src="images/office.jpg"></img>
-          </div>
-          <a href="#user"><img class="circle" src="images/yuna.jpg"></img></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
-          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+       <p><span class="white-text name">John Doe</span></p>
+       <p><span class="white-text email">jdandturk@gmail.com</span></p>
+       </div>
 
 
-   </div>
+      <a href="javascript:void(0)" class="closebtn" onClick={this.closeNav}>&times;</a>
+      <a href="#">Edit Profile</a>
+      <a href="#">Kid 1</a>
+      <a href="#">Kid 2</a>
+      <a href="#">Kid 3</a>
+    </div>
+
+    <div id="main">
+      <button class="openbtn" onClick={this.openNav}>&#9776; Menu</button> 
+
+    </div>
+
+    </div>
    
           
   );
