@@ -1,0 +1,27 @@
+.joinNewHomeBtn {
+  width: 200px;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.5px;
+  text-align: center;
+}
+.pasthome {
+  height: 150px;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.5px;
+  text-align: center;
+}
+.coinCountBox {
+  height: 150px;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.5px;
+  text-align: center;
+}
+.joinNewHomeBtn, .myGoalsTab, .goalHistoryTab, .journalTab {
+  cursor: pointer;
+}

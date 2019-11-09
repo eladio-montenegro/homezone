@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { CheckList,CheckListItem } from "../components/Checklist";
+
+import Footer from "../components/Footer";
+import ParentView from "../components/ParentView";
+
 import Table from "../components/Table/Table.js";
 import SideNav from "../components/SideNav";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import API from "../utils/API";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
+
 
 import { cpus } from "os";
 
@@ -148,6 +153,7 @@ class ParentPortal extends Component  {
       
      
       <div>
+
          
  
       <Container>
@@ -199,6 +205,7 @@ class ParentPortal extends Component  {
        
       </Container>
       
+
       </div>
     );
     }

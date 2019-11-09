@@ -13,13 +13,10 @@ class KidSignUp extends Component {
   render() {
     return (
       <div>
-   
       <Container>
-        <KidSteppedForm> </KidSteppedForm>
+        <KidSteppedForm></KidSteppedForm>
       </Container>
       </div>
-      
-    
     );
   }
 }

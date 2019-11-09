@@ -4,6 +4,8 @@ import { CheckList,CheckListItem } from "../Checklist";
 import "./style.css";
 
 
+
+
 var mongoose = require('mongoose');
 
 class SteppedForm extends React.Component {
@@ -33,8 +35,6 @@ class SteppedForm extends React.Component {
     }
   }
 
-
-
   handleChange = event => {
     const {name, value} = event.target
     this.setState({
@@ -43,8 +43,10 @@ class SteppedForm extends React.Component {
   }
 
 
+
 switchPage =()=> {
      document.location.href = "/parentportal";
+
   }
 
    
@@ -481,12 +483,12 @@ function Step5(props) {
     <React.Fragment>
     <div className="form-group">
     <h2>Your Home Profile has Been Created!</h2>
-    <img className="successimg" src="https://www.seekpng.com/png/detail/14-147262_confetti-icon.png" width="200px" alt="Girl in a jacket"/> 
+    <img className="successimg" src="https://www.seekpng.com/png/detail/14-147262_confetti-icon.png" width="200px" alt="confetti"/> 
     
     
 
     </div>
-    <button className="btn btn-success btn-block successbutton">Go to Account</button>
+    <a href="/ParentPortal" className="btn btn-success btn-block successbutton">Go to Account</a>
     </React.Fragment>
   );
 }
