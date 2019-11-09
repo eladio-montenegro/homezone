@@ -45,10 +45,6 @@ class SteppedForm extends React.Component {
 
 switchPage =()=> {
      document.location.href = "/parentportal";
-    
-
-    
-
   }
 
    

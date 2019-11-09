@@ -31,7 +31,7 @@ import TextField from '@material-ui/core/TextField';
 
 
 
-class ParentPortal extends Component  {
+class ManageKid extends Component  {
 
 
 
@@ -208,4 +208,4 @@ class ParentPortal extends Component  {
 }
 
 
-export default ParentPortal;
+export default ManageKid;

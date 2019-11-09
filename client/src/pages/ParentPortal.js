@@ -188,16 +188,13 @@ class ParentPortal extends Component  {
                   </div>
 
             </div>
-           
 
         </SimpleModal>
         
         <Col  size="col s12 m4">
         
           </Col>
-        
-              
-      
+    
         </Row>
        
       </Container>
