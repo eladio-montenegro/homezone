@@ -4,9 +4,13 @@ import { CheckList,CheckListItem } from "../Checklist";
 import "./style.css";
 
 
-
+var mongoose = require('mongoose');
 
 class SteppedForm extends React.Component {
+
+  
+
+
   constructor(props) {
     super(props)
     this.state = {
@@ -24,6 +28,8 @@ class SteppedForm extends React.Component {
       isrespite:0,
       welcome:'',
       rules:'',
+      
+      
     }
   }
 
@@ -37,12 +43,11 @@ class SteppedForm extends React.Component {
   }
 
 
-displayList =()=> {
+switchPage =()=> {
+     document.location.href = "/parentportal";
+    
 
-    API.getParents()
-    .then(res => console.log(JSON.stringify(res.data))
-    )
-    .catch(err => console.log(err));
+    
 
   }
 
@@ -77,9 +82,11 @@ displayList =()=> {
         welcome:this.state.welcome,
         rules:this.state.rules,
       })
-        .then(this.displayList())
+        .then(this.switchPage())
         .catch(err => console.log(err));
     }
+
+    
   }
   
   _next = () => {

@@ -6,7 +6,7 @@ import { CheckList,CheckListItem } from "../components/Checklist";
 import CTABtn from "../components/CTABtn";
 import ImageCard from "../components/ImageCard";
 import ImgCarasol from "../components/ImgCarasol";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import { cpus } from "os";
 
 class Homepage extends Component {
@@ -125,7 +125,7 @@ class Homepage extends Component {
 
         </Row>
 
-        <Footer></Footer>
+        {/* <Footer></Footer> */}
       </Container>
       </div>
     
