@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var ObjectId = mongoose.Schema.Types.ObjectId;
 const Schema = mongoose.Schema;
 
 const parentSchema = new Schema({
@@ -13,7 +14,7 @@ const parentSchema = new Schema({
   welcome: String,
   rules: String,
   fosterkids: [{type: Schema.Types.ObjectId, ref: 'KidUser'}],
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
 });
 
 

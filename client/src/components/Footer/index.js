@@ -1,3 +1,4 @@
+  
 import React from "react";
 import "./style.css";
 
@@ -29,8 +30,6 @@ function Footer({ children}) {
           </div>
         </footer>
   
-
   );
 }
-
 export default Footer;

@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const kidSchema = new Schema({
-    nickname: { type: String, required: true },
+    nickname: String,
+    firstname: String,
     lastname: String,
     age: Number, 
     bio: String,
@@ -11,6 +13,9 @@ const kidSchema = new Schema({
     likes: Array,
     allergies: Array,
     foodrestrictions: String,
+    code: Number,
+    profilelink:String,
+   
 
 
     journalentries: Array,
