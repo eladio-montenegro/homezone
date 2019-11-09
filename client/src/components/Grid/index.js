@@ -15,9 +15,7 @@ export function Row({ fluid, children , backcolor, margin, tall }) {
 
 export function Col({ size, offset, children,margin }) {
   return (
-    <div
-      className={size+ " "+ offset + " "+ margin}
-    >
+    <div className={size+ " "+ offset + " "+ margin || '' }>
       {children}
     </div>
   );
