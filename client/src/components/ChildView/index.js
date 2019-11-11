@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API.js";
-import {KidSteppedForm} from "../KidSteppedForm"; //change to conform to kid stepped form
+import { KidSteppedForm } from "../KidSteppedForm"; //change to conform to kid stepped form
 import "./style.css";
 
 
@@ -9,47 +9,47 @@ class ChildView extends React.Component {
     super(props)
     this.state = {
       currentStep: 1,
-      firstname:  '',
+      firstname: '',
       familyname: '',
-      email:  '',
+      email: '',
       username: '',
-      password: '', 
+      password: '',
       phone: '',
       occupation: '',
-      usstate:'',
+      usstate: '',
       isfoster: 0,
       istheraputic: 0,
-      isrespite:0,
-      welcome:'',
-      rules:'',
+      isrespite: 0,
+      welcome: '',
+      rules: '',
     }
   }
 
   handleChange = event => {
-    const {name, value} = event.target
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    })    
+    })
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const {} = this.state
+    const { } = this.state
 
     if (this.state.username && this.state.password) {
       API.saveParentUser({
-        rules:this.state.rules,
+        rules: this.state.rules,
       })
-      .then(this.displayList())
-      .catch(err => console.log(err));
+        .then(this.displayList())
+        .catch(err => console.log(err));
     }
   }
-  
-  render() {    
+
+  render() {
     return (
       <React.Fragment>
         <PortalWelcome
-          currentStep={this.state.currentStep} 
+          currentStep={this.state.currentStep}
           handleChange={this.handleChange}
         />
       </React.Fragment>
@@ -57,13 +57,13 @@ class ChildView extends React.Component {
   }
 }
 
-function PortalWelcome (props) {
+function PortalWelcome(props) {
   if (props.currentStep !== 1) {
     return null
-  } 
-  return(
+  }
+  return (
     <div className="intro-group">
-    <h2>Welcome to HomeZone, Nickname</h2>
+      <h2>Welcome to HomeZone, Nickname</h2>
     </div>
   );
 }

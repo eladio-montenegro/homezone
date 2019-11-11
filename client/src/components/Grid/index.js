@@ -8,14 +8,14 @@ export function Container({ fluid, children }) {
 }
 
 // This Row component lets us use a bootstrap row without having to think about class names
-export function Row({ fluid, children , backcolor, margin, tall }) {
-  return <div className={`row${fluid ? "-fluid" : ""}` +" "+ backcolor+ " "+ margin + " "+ tall }>{children}</div>;
+export function Row({ fluid, children, backcolor, margin, tall }) {
+  return <div className={`row${fluid ? "-fluid" : ""}` + " " + backcolor + " " + margin + " " + tall}>{children}</div>;
 }
 
 
-export function Col({ size, offset, children,margin }) {
+export function Col({ size, offset, children, margin }) {
   return (
-    <div className={size+ " "+ offset + " "+ margin || '' }>
+    <div className={size + " " + offset + " " + margin || ''}>
       {children}
     </div>
   );
