@@ -7,112 +7,256 @@ import { cpus } from "os";
 class KidPortal extends Component {
     render() {
         return (
-            <div class="container">
-                <div class="row">
-                    <div class="col l6">
+            <div className="container">
+                <div className="row">
+                    <div className="col l6">
                         {/* Welcoming Message */}
                         <h4>Welcome to Homebase, Nickname</h4>
                     </div>
-                    <div class="col l4 offset-l2">
+                    <div className="col l4 offset-l2">
                         {/* Join New Home */}
-                        <h6 class="joinNewHomeBtn">Join New Home</h6> {/*</div>Button will take you to a component to add Home Code*/}
+                        <h6 className="joinNewHomeBtn">Join New Home</h6> {/*</div>Button will take you to a component to add Home Code*/}
                     </div>
                 </div>
-                {/* Three Tabs */}
-                <Tabs className="tab-demo z-depth-1 tabs-fixed-width">
-                    <Tab title="My Goals" href="#myGoalsTab" active>
-                        <div id="myGoalsTab">
-                            {/* Coin Count Box */}
-                            <div class="row">
-                                <div class="col12">
-                                    <div class="coinCountBox">
-                                        <p>You have</p>
-                                        <h4 class="coinCount">15 O</h4> {/*Add Dynamically*/}
+                <div class="row">
+                    {/* Three Tabs */}
+                    <div className="col l12">
+                        <Tabs className="tab-demo">
+                            {/* My Goals Tab */}
+                            <Tab title="My Goals" href="#myGoalsTab" className="col l12" active>
+                                {/* My Goals Tab Data */}
+                                <div id="myGoalsTab">
+                                    {/* Heading */}
+                                    <div class="row">
+                                        <div class="col s4 offset-s4">
+                                            <h5>My Goals</h5>
+                                        </div>
+                                        <div class="offset-4"></div>
+                                    </div>
+                                    {/* Coin Count Box */}
+                                    <div class="row">
+                                        <div class="col l12">
+                                            <div class="coinBox">
+                                                <p>You have</p>
+                                                <h4 class="coinCount">15 O</h4> {/*Add Dynamically*/}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* My Goals Labels*/}
+                                    <div class="row">
+                                        <div class="col l2">
+                                            <h5>Goals</h5>
+                                        </div>
+                                        <div class="col l2 offset-l6">
+                                            <h5>Coin Value</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Status</h5>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    {/* Goals, Coin Value, Status */}
+                                    <div class="row">
+                                        <div class="col l8">
+                                            {/* Goals */}
+                                            <p class="newgoal"></p>
+                                            <p class="newgoal">Fold Laundry</p>
+                                            <p class="newgoal">Pass Physics Exam</p>
+                                            <p>Ask for a new goal + </p>
+
+                                        </div>
+                                        <div class="col l2">
+                                            {/* Coin Value */}
+                                            <p>5 O</p>
+                                            <p>25 O</p>
+                                        </div>
+                                        <div class="col l2">
+                                            {/* Status */}
+                                            <button>pending</button> {/* Pending, In Progress, Done */}
+                                            <button>pending</button>
+                                        </div>
+                                    </div>
+                                    {/* My Goals: Reward Labels */}
+                                    <div class="row">
+                                        <div class="col l8">
+                                            <h5>Reward</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Price</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Status</h5>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    {/* Rewards, Price, Status */}
+                                    <div class="row">
+                                        <div class="col l8">
+                                            {/* Rewards */}
+                                            <p>Pizza Dinner</p>
+                                            <p>Delay Curfew by 30 minutes</p>
+                                            <p>Ask for a new reward + </p>
+                                        </div>
+                                        <div class="col l2">
+                                            {/* Price */}
+                                            <p>25 O</p>
+                                            <p>150 O</p>
+                                        </div>
+                                        <div class="col l2">
+                                            {/* Status */}
+                                            <button>pending</button>
+                                            <button>pending</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {/* Current Goals */}
-                            <div class="row">
-                                <div class="col l2">
-                                    <h5>Goals</h5>
+                            </Tab>
+                            {/* Goal History Tab */}
+                            <Tab title="Goal History" href="#goalHistoryTab" className="col l12" active>
+                                {/* Goal History Tab Data */}
+                                <div id="goalHistoryTab">
+                                    <div class="row">
+                                        <div class="col s4 offset-s4">
+                                            <h5>Goal History</h5>
+                                        </div>
+                                        <div class="offset-4"></div>
+                                    </div>
+                                    {/* Coin History Boxes */}
+                                    <div class="row">
+                                        <div class="col l6">
+                                            <div class="coinBox">
+                                                {/*  Coins Earned */}
+                                                <p>Coins Earned</p>
+                                                <h4 class="coinsEarned">158 O</h4>
+                                                {/* Add Dynamically */}
+                                            </div>
+                                        </div>
+                                        <div class="col l6">
+                                            <div class="coinBox">
+                                                {/*  Coins Spent */}
+                                                <p>Coins Spent</p>
+                                                <h4 class="coinsSpent">143 O</h4>
+                                                {/* Add Dynamically */}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Goal History Labels */}
+                                    <div class="row">
+                                        <div class="col l8">
+                                            <h5>Goals Completed</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Coin Value</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Date</h5>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <div class="row">
+                                        {/* Goals Completed */}
+                                        <div class="col l8">
+                                            <p>Clean Bathroom</p>
+                                            <p>Wash Dishes</p>
+                                            <p>No Missing Homework Assignments for a Week</p>
+                                            <p>Vaccum the House</p>
+                                        </div>
+                                        {/* Coin Value */}
+                                        <div class="col l2">
+                                            <p>5 O</p>
+                                            <p>10 O</p>
+                                            <p>25 O</p>
+                                            <p>5</p>
+                                        </div>
+                                        {/* Date */}
+                                        <div class="col l2">
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                        </div>
+                                    </div>
+                                    {/* <!-- Rewards Labels --> */}
+                                    <div class="row">
+                                        <div class="col l8">
+                                            <h5>Rewards Earned</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Price</h5>
+                                        </div>
+                                        <div class="col l2">
+                                            <h5>Date</h5>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <div class="row">
+                                        {/* Rewards Earned */}
+                                        <div class="col l8">
+                                            <p>Pizza Dinner</p>
+                                            <p>Go to Water Park</p>
+                                            <p>Movie Night</p>
+                                            <p>Buy God of War 3</p>
+                                            <p>1 hour of computer time</p>
+                                        </div>
+                                        {/* Price */}
+                                        <div class="col l2">
+                                            <p>25 O</p>
+                                            <p>35 O</p>
+                                            <p>50 O</p>
+                                            <p>75 O</p>
+                                            <p>25 O</p>
+                                        </div>
+                                        {/* Date */}
+                                        <div class="col l2">
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                            <p>TimeStamp</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col l2 offset-l6">
-                                    <h5>Coin Value</h5>
+                            </Tab>
+                            {/* Journal Tab */}
+                            <Tab title="Journal" className="col l12" href="#journalTab" active>
+                                {/* Journal Tab Data */}
+                                <div id="journalTab">
+                                    {/* Heading */}
+                                    <div class="row">
+                                        <div class="col s4 offset-s4">
+                                            <h5>My Sharing Journal</h5>
+                                        </div>
+                                        <div class="offset-4"></div>
+                                    </div>
+                                    {/* Journal Box */}
+                                    <div class="journal">
+                                        <div class="row">
+                                            <div class="input-field col s8 offset-s2">
+                                                {/* Text Area */}
+                                                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                                <label for="textarea1">
+                                                    Write any thoughts, feelings or ideas you want to share with your guardians
+                                            </label>
+                                            </div>
+                                        </div>
+                                        {/* Submit Button */}
+                                        <div class="row">
+                                            <button>Submit</button>
+                                        </div>
+                                        <div class="col offset-2"></div>
+                                    </div>
                                 </div>
-                                <div class="col l2">
-                                    <h5>Status</h5>
-                                </div>
-                            </div>
-                            <hr></hr>
-                            <div class="row">
-                                <div class="col l8">
-                                    {/* Goals */}
-                                    <p class="newgoal"></p>
-                                    <p class="newgoal">Fold Laundry</p>
-                                    <p class="newgoal">Pass Physics Exam</p>
-                                    <p>Ask for a new goal + </p>
-
-                                </div>
-                                <div class="col l2">
-                                    {/* Coin Value */}
-                                    <p>5 O</p>
-                                    <p>25 O</p>
-                                </div>
-                                <div class="col l2">
-                                    {/* Status */}
-                                    <button>pending</button> {/* Pending, In Progress, Done */}
-                                    <button>pending</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col l8">
-                                    <h5>Reward</h5>
-                                </div>
-                                <div class="col l2">
-                                    <h5>Price</h5>
-                                </div>
-                                <div class="col l2">
-                                    <h5>Status</h5>
-                                </div>
-                            </div>
-                            <hr></hr>
-                            <div class="row">
-                                <div class="col l8">
-                                    {/* Rewards */}
-                                    <p>Pizza Dinner</p>
-                                    <p>Delay Curfew by 30 minutes</p>
-                                    <p>Ask for a new reward + </p>
-                                </div>
-                                <div class="col l2">
-                                    {/* Price */}
-                                    <p>25 O</p>
-                                    <p>150 O</p>
-                                </div>
-                                <div class="col l2">
-                                    <button>pending</button>
-                                    <button>pending</button>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col l6">
-                                    <h5>My Past Homes</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </Tab>
-                    <Tab title="Goal HIstory" href="#goalHistoryTab" active>
-                        Goal History
-                        <div id="goalHistoryTab"></div>
-                    </Tab>
-                    <Tab title="Journal">
-                        Journal
-                        <div id="journalTab"></div>
-                    </Tab>
-                </Tabs>
+                            </Tab>
+                        </Tabs>
+                    </div>
+                </div>
                 {/* Past Homes */}
                 <div class="row">
+                    <div class="col l6">
+                        {/* Heading */}
+                        <h5>My Past Homes</h5>
+                    </div>
+                </div>
+                <div className="row">
                     <div class="col l3">
                         <h6 class="pasthome">The Hernandez Home</h6>
                     </div>
@@ -125,7 +269,6 @@ class KidPortal extends Component {
                     Arrow {/*Arrow to be added by Lotus*/}
                 </div>
             </div>
-
         );
     }
 }
