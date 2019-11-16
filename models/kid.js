@@ -1,6 +1,7 @@
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-var ObjectId = mongoose.Schema.Types.ObjectId;
+
 
 const kidSchema = new Schema({
     nickname: String,
@@ -13,7 +14,6 @@ const kidSchema = new Schema({
     likes: Array,
     allergies: Array,
     foodrestrictions: String,
-    code: Number,
     profilelink:String,
    
 
@@ -22,7 +22,9 @@ const kidSchema = new Schema({
     freenote: String,
 
     currentfamily: Number,
-    fosterfamilies: [{type: Schema.Types.ObjectId, ref: 'ParentUser'}], //kids have a number of families
+    fosterfamilies: [{type: Schema.Types.ObjectId, 
+        ref: 'ParentUser',
+        default:undefined}], //kids have a number of families
     
     
     currentcoins: { type: Number, default: 0 },
@@ -32,6 +34,7 @@ const kidSchema = new Schema({
 
     date: { type: Date, default: Date.now }
 });
+
 
 
 
