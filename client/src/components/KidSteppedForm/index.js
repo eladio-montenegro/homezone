@@ -65,7 +65,14 @@ class KidSteppedForm extends React.Component {
         religion: this.state.religion,
         freenote:this.state.freenote,
       })
-        .then(console.log(this.displayList()))
+        .then(res => {
+
+          console.log("hey data"+res.data);
+          localStorage.setItem("kidid", res.data._id);
+          window.location.href = "/kidportal";
+
+
+        })
         .catch(err => console.log(err));
     }
   }
@@ -163,6 +170,7 @@ nextButton(){
         <Step4
           currentStep={this.state.currentStep} 
           handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
         />
 
         {this.previousButton()}
@@ -385,7 +393,7 @@ function Step4(props) {
     
   
     </div>
-    <a href="/KidPortal" className="btn btn-success btn-block successbutton">Go to Account</a>
+    <a onClick={props.handleSubmit} className="btn btn-success btn-block successbutton">Go to Account</a>
     </React.Fragment>
   );
 }
