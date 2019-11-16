@@ -23,7 +23,7 @@ class SteppedForm extends React.Component {
       usstate: '',
       isfoster: 0,
       istheraputic: 0,
-
+      newid: '',
       isrespite:0,
       welcome:'',
       rules:'',
@@ -43,34 +43,19 @@ class SteppedForm extends React.Component {
 
 
 
-  switchPage = () => {
-    document.location.href = "/parentportal";
-
-  }
 
 
   handleSubmit = event => {
     event.preventDefault()
 
     const { firstname, email, username, password,phone, familyname,usstate, isfoster,istheraputic,isrespite, welcome, rules } = this.state
-    // alert(`Your registration detail: \n 
-    //        Name ${firstname} \n 
-    //        Email: ${email} \n 
-    //        Username: ${username} \n
-    //        Phone: ${phone} \n
-    //        Family Name: ${familyname} \n
-    //        US State: ${usstate} \n
-    //        Is Foster: ${isfoster} \n
-    //        Is Theraputic: ${istheraputic} \n
-    //        Is Respite: ${isrespite} \n
-    //        Welcome: ${welcome} \n
-    //        Rules: ${rules} \n
-    //        Password: ${password}`)
+
 
 
     if (this.state.username && this.state.password) {
 
       this.setState({code: (Math.floor(1000 + Math.random() * 9000)).toString()});
+      
 
 
       API.saveParentUser({
@@ -81,15 +66,20 @@ class SteppedForm extends React.Component {
         password: this.state.password,
         phone: this.state.phone,
         occupation: this.state.occupation,
-
         usstate:this.state.usstate,
         welcome:this.state.welcome,
         rules:this.state.rules,
         code: this.state.code,
 
       })
-        .then(this.switchPage())
+        .then(res => {
+          console.log (res.data._id); 
+          this.setState({newid:res.data._id});
+          localStorage.setItem("id", res.data._id);
+          window.location.href = "/parentportal";
+        })
         .catch(err => console.log(err));
+        
     }
 
 
@@ -195,6 +185,8 @@ class SteppedForm extends React.Component {
           <Step5
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            switchPage={this.switchPage}
           />
           {this.previousButton()}
           {this.nextButton()}
@@ -498,7 +490,7 @@ function Step5(props) {
 
 
       </div>
-      <a href="/ParentPortal" className="btn btn-success btn-block successbutton">Go to Account</a>
+      <a  onClick={props.handleSubmit} className="btn btn-success btn-block successbutton">Go to Account</a>
     </React.Fragment>
   );
 }

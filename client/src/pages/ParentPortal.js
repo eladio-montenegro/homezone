@@ -23,7 +23,7 @@ class ParentPortal extends Component  {
  
 
   state = {
-    parentid: "5dcb7c2ae29e574990b935ee",
+    parentid:localStorage.getItem("id"),
     fosterkids: [],
     parentname:"",
     firstname: "",
@@ -45,7 +45,7 @@ class ParentPortal extends Component  {
   loadParent= () => {
     this.setState({ fosterkids: [] });
     
-      API.getParent("5dcb7c2ae29e574990b935ee")
+      API.getParent(this.state.parentid)
       .then(  res => {
 
           this.setState({parentinfo:res.data});
@@ -222,6 +222,8 @@ class ParentPortal extends Component  {
     
         {listKids}
         <SimpleModal 
+
+    
           buttontext="+ Add New Kid"
           modaltitle="Add A Foster Kid">
            <p>Enter the name of the kid you want to add. </p> 
@@ -237,7 +239,7 @@ class ParentPortal extends Component  {
                     value={this.state.newkidname}
                     onChange={this.handleChange}
                     />   
-
+                    
                     <Button color="primary" type="button" onClick={this.handleFormSubmit}> Add</Button>   
                   </div>
 
