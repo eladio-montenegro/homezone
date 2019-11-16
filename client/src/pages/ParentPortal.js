@@ -20,7 +20,7 @@ import SimpleModal from "../components/SimpleModal";
 
 class ParentPortal extends Component  {
   state = {
-    parentid:localStorage.getItem("id"),
+    parentid: localStorage.getItem("id"),
     fosterkids: [],
     parentname:"",
     firstname: "",
@@ -37,7 +37,7 @@ class ParentPortal extends Component  {
   componentDidMount() {
     this.loadParent();
     
-  }
+  };
 
   loadParent= () => {
     this.setState({ fosterkids: [] });
@@ -47,17 +47,18 @@ class ParentPortal extends Component  {
 
           this.setState({parentinfo:res.data});
           
-          this.loadKids(res.data.fosterkids);
+           this.loadKids();
       }) 
       .catch(err => console.log(err));
   };
 
 
-  loadKids =(fosterKids) => {
-    fosterKids.map(element => {
+  loadKids =() => {
+    this.state.parentinfo.fosterkids.map(element => {
       API.getKid(element)
       .then( res => {
         this.setState({ fosterkids: [...this.state.fosterkids,res.data] });
+       
  
       })
           .catch(err => console.log(err));
@@ -88,8 +89,8 @@ class ParentPortal extends Component  {
     .then(  res => {
       
       this.setState(
-        { fosterkids: [...this.state.fosterkids,res.data]});    
-        this.addNewKid();
+      { fosterkids: [...this.state.fosterkids,res.data]});    
+      this.addNewKid();
         
     })
         .catch(err => console.log(err));
@@ -105,8 +106,6 @@ class ParentPortal extends Component  {
        
       })
       .catch(err => console.log(err));
-
-
 
   };
 

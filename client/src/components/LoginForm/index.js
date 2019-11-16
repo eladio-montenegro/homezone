@@ -50,6 +50,8 @@ class LoginForm extends React.Component {
               this.state.selectedUser = parentArray[ i ];
           console.log (this.state.selectedUser);
           gotit=true;
+
+          localStorage.clear();
           localStorage.setItem("id", parentArray[i]._id);
           
           window.location.href = "/parentportal";
@@ -82,8 +84,9 @@ kidLogin =()=> {
      for (j = 0; j < kidArray.length; j++) {
        if(kidArray[j].username === this.state.username ){
          this.state.kidUser = kidArray[ j ];
-    
-            localStorage.setItem("kidid", kidArray[j]._id);
+         
+         localStorage.clear();
+         localStorage.setItem("kidid", kidArray[j]._id);
             
             window.location.href = "/KidPortal";
 

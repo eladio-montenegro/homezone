@@ -9,7 +9,7 @@ class KidPortal extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            kidid: "5dcb7c2be29e574990b935f1",
+            kidid: localStorage.getItem("kidid"),
             coinCount: 0,
             nickname: "",
             status: ""
@@ -31,7 +31,7 @@ class KidPortal extends Component {
     // }
 
     render() {
-        API.getKid("5dcb7c2be29e574990b935f1")
+        API.getKid(this.state.kidid)
             .then(res => {
                 this.setState({ coinCount: res.data.coinCount, nickname: res.data.nickname });
             })
