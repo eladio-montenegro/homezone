@@ -8,8 +8,8 @@ import Nav from "./components/Nav";
 import SideNav from "./components/SideNav";
 import ParentSignUp from "./pages/ParentSignUp";
 import ParentPortal from "./pages/ParentPortal";
+import ParentPortalEdit from "./pages/ParentPortalEdit";
 import KidSignUp from "./pages/KidSignUp";
-import ManageKid from "./pages/ManageKid";
 import Login from "./pages/Login";
 import ChildView from "./components/ChildView";
 import KidPortal from "./pages/KidPortal";
@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/home" component={Homepage} />
           <Route exact path="/parentsignup" component={ParentSignUp}/>
           <Route exact path="/parentportal" component={ParentPortal}/>
-          <Route exact path="/managekid" component={ManageKid}/>
+          <Route exact path="/editparentportal" component={ParentPortalEdit}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/kidsignup" component={KidSignUp}/>
           <Route exact path="/kidportal" component={KidPortal}/>

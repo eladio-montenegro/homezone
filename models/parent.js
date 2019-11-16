@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-var ObjectId = mongoose.Schema.Types.ObjectId;
 const Schema = mongoose.Schema;
 
 const parentSchema = new Schema({
@@ -13,7 +12,12 @@ const parentSchema = new Schema({
   email: String,
   welcome: String,
   rules: String,
-  fosterkids: [{type: Schema.Types.ObjectId, ref: 'KidUser'}],
+  code: String,
+  fosterkids: [{
+    type: Schema.Types.ObjectId, 
+    ref: 'KidUser', 
+    default:undefined 
+  }],
   date: { type: Date, default: Date.now },
 });
 
@@ -22,4 +26,3 @@ const parentSchema = new Schema({
 const ParentUser = mongoose.model("ParentUser", parentSchema);
 
 module.exports = ParentUser;
-
