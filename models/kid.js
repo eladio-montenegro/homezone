@@ -6,6 +6,8 @@ const Schema = mongoose.Schema;
 const kidSchema = new Schema({
     nickname: String,
     firstname: String,
+    username: String,
+    password: String,
     lastname: String,
     age: Number, 
     bio: String,
