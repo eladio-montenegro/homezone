@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API.js";
-import {KidSteppedForm} from "../KidSteppedForm"; //change to conform to kid stepped form
+import {KidSteppedForm} from "../KidSteppedForm";
 import "./style.css";
 
 
@@ -8,20 +8,7 @@ class ChildView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentStep: 1,
-      firstname:  '',
-      familyname: '',
-      email:  '',
-      username: '',
-      password: '', 
-      phone: '',
-      occupation: '',
-      usstate:'',
-      isfoster: 0,
-      istheraputic: 0,
-      isrespite:0,
-      welcome:'',
-      rules:'',
+      coinCount: 0
     }
   }
 
@@ -34,7 +21,11 @@ class ChildView extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const {} = this.state
+    const {coinCount} = this.state
+    alert(
+      `Your Coin Count: \n 
+      Coin Count: ${coinCount} \n `
+    )
 
     if (this.state.username && this.state.password) {
       API.saveParentUser({
@@ -49,7 +40,7 @@ class ChildView extends React.Component {
     return (
       <React.Fragment>
         <PortalWelcome
-          currentStep={this.state.currentStep} 
+          coinCount={this.state.coinCount} 
           handleChange={this.handleChange}
         />
       </React.Fragment>

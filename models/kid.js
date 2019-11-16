@@ -15,8 +15,6 @@ const kidSchema = new Schema({
     allergies: Array,
     foodrestrictions: String,
     profilelink:String,
-   
-
 
     journalentries: Array,
     freenote: String,
@@ -27,8 +25,7 @@ const kidSchema = new Schema({
         default:undefined}], //kids have a number of families
     
     
-    currentcoins: { type: Number, default: 0 },
-    allcoins: Number,
+    coinCount: { type: Number, default: 0 },
     goals: Array, //kids have a number of chores assigned to them
     rewards: Array,
 

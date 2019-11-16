@@ -14,13 +14,20 @@
   border-width: 0.5px;
   text-align: center;
 }
-.coinCountBox {
+.coinBox {
   height: 150px;
   padding: 20px;
   border-style: solid;
   border-color: black;
   border-width: 0.5px;
   text-align: center;
+}
+.journal {
+  height: 200px;
+  padding: 20px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.5px;
 }
 .joinNewHomeBtn, .myGoalsTab, .goalHistoryTab, .journalTab {
   cursor: pointer;
