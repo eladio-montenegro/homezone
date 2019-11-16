@@ -3,9 +3,24 @@ import { Tab, Tabs } from 'react-materialize';
 import Footer from "../components/Footer";
 import ChildView from "../components/ChildView";
 import { cpus } from "os";
+import API from "../utils/API";
 
 class KidPortal extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            coinCount: 0,
+            nickname: ""
+        }
+    }
+
     render() {
+        // API.getKid(id)
+        //     .then(res => {
+        //         this.setState({ coinCount: res.data.coinCount });
+        //     })
+        //     .catch(err => console.log(err));
+
         return (
             <div className="container">
                 <div className="row">
@@ -38,7 +53,7 @@ class KidPortal extends Component {
                                         <div class="col l12">
                                             <div class="coinBox">
                                                 <p>You have</p>
-                                                <h4 class="coinCount">15 O</h4> {/*Add Dynamically*/}
+                                                <h4 class="coinCount">{this.state.coinCount} O</h4>
                                             </div>
                                         </div>
                                     </div>
