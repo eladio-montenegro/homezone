@@ -25,10 +25,11 @@ function App() {
           <Route exact path="/home" component={Homepage} />
           <Route exact path="/parentsignup" component={ParentSignUp}/>
           <Route exact path="/parentportal" component={ParentPortal}/>
+          <Route exact path="/parentportal/kidportal/:id" component={KidPortal}/>
           <Route exact path="/editparentportal" component={ParentPortalEdit}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/kidsignup" component={KidSignUp}/>
-          <Route exact path="/kidportal" component={KidPortal}/>
+          <Route exact path="/kidportal/" component={KidPortal}/>
           <Route exact path="/books" component={Books}/>
           <Route exact path="/books/:id" component={Detail}/>
           <Route component={NoMatch} />

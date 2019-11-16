@@ -24,7 +24,7 @@ class ChildView extends React.Component {
     const {coinCount} = this.state
     alert(
       `Your Coin Count: \n 
-      Coin Count: ${coinCount} \n `
+      // Coin Count: ${coinCount} \n `
     )
 
     if (this.state.username && this.state.password) {
