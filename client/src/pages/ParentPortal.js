@@ -1,93 +1,140 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
-import { CheckList,CheckListItem } from "../components/Checklist";
-
-import Footer from "../components/Footer";
-import ParentView from "../components/ParentView";
-
-import Table from "../components/Table/Table.js";
-import SideNav from "../components/SideNav";
-import Sidebar from "../components/Sidebar/Sidebar.js";
 import API from "../utils/API";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Fab from '@material-ui/core/Fab';
-
-
 import { cpus } from "os";
-
-
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Language from "@material-ui/icons/Language";
 // core components
-
 import Card from "../components/Card/Card.js";
 import CardBody from "../components/Card/CardBody.js";
 import CardHeader from "../components/Card/CardHeader.js";
 import CardIcon from "../components/Card/CardIcon.js";
 
 import Button from "../components/CustomButtons/Button.js";
-import image from '../assets/img/sidebar-1.jpg';
-import logo from '../assets/img/reactlogo.png';
 import SimpleModal from "../components/SimpleModal";
-
-import TextField from '@material-ui/core/TextField';
 
 
 
 class ParentPortal extends Component  {
 
-
-
+ 
 
   state = {
+    parentid: "5dcb7c2ae29e574990b935ee",
     fosterkids: [],
+    parentname:"",
     firstname: "",
-    bio: "",
-    code:"",
+    newkidname:"",
+    newkidid:"",
     id:"",
+    bio: "",
+    parentinfo: {},
     profilelink:"",
+    firstload: 0,
 
-
- 
   };
 
   componentDidMount() {
-    this.loadKids();
+    this.loadParent();
+    
   }
 
-  loadKids = () => {
-    API.getKids()
-      .then(  res =>   this.setState({ fosterkids: res.data, firstname: "", bio: "" ,id:"", portallink:""})
-      )
-      .catch(err => console.log(err));
+  loadParent= () => {
+    this.setState({ fosterkids: [] });
+    
+      API.getParent("5dcb7c2ae29e574990b935ee")
+      .then(  res => {
 
+          this.setState({parentinfo:res.data});
+          
+          this.loadKids(res.data.fosterkids);
+      }) 
+      .catch(err => console.log(err));
   };
+
+
+  loadKids =(fosterKids) => {
+    
+
+    fosterKids.map(element => {
+   
+
+      API.getKid(element)
+      .then(  res => {
+        this.setState({ fosterkids: [...this.state.fosterkids,res.data] });
+ 
+      })
+          .catch(err => console.log(err));
+          
+    })
+      
+  }
+
 
   handleFormSubmit = event => {
     event.preventDefault();
-    
+
       API.saveKidUser({
-        firstname: this.state.firstname,
-        profilelink: "/parentportal/" + this.state.firstname,
-        code: Math.round(Math.random() * 2000),
+        "firstname" : this.state.newkidname,
+        "fosterfamilies" : [ 
+            this.state.parentid
+        ]
       })
-        .then(res => this.loadKids())
+        .then(res => { this.getNewKid(res.data._id);})
         .catch(err => console.log(err));
+
+  };
+
+ getNewKid= (newKidID) => { 
     
+
+    API.getKid(newKidID)
+    .then(  res => {
+      
+      this.setState(
+        { fosterkids: [...this.state.fosterkids,res.data]});    
+        this.addNewKid();
+        
+    })
+        .catch(err => console.log(err));
+
   };
 
 
+  addNewKid=()=> {
+
+    API.updateParentUser(this.state.parentid, {fosterkids: this.state.fosterkids})
+      .then(myDude => {
+        this.loadParent();
+       
+      })
+      .catch(err => console.log(err));
+
+
+
+  };
+
   deleteKid = event => {
 
-    const {name, value} = event.target
-  console.log (value);
+    const {name, value} = event.target;
+    const fosterkids =this.state.fosterkids.filter(kid => kid._id !== value);
+  
 
-
-    API.deleteKid(value)
-      .then(res => this.loadKids())
+  
+    API.updateParentUser(this.state.parentid, {
+      fosterkids: fosterkids}
+      )
+      .then(myDude => {
+   
+        this.loadParent();
+  
+      })
       .catch(err => console.log(err));
+
+      
   };
 
 
@@ -97,19 +144,20 @@ class ParentPortal extends Component  {
     this.setState({
       [name]: value
     })    
+
+   
   }
 
-
+  
   render() {
  
-
+    
     let appRoutes=[{name:"Jessica",path: "/parentportal/jessica", layout:"Googs", icon:""}];
-   
+    let listKids= this.state.fosterkids.map((item, i) =>  
 
-    const listKids= this.state.fosterkids.map((item) =>  
-
-
-    <Col  size="col s12 m4">
+    
+    <Col  size="col s12 m4" key={i}>
+     
     <Card>
       <CardHeader color="danger">
         <h4>{item.firstname}</h4>
@@ -120,14 +168,13 @@ class ParentPortal extends Component  {
         </p>
         <a
           href={item.profilelink}
-          
         >
           VIEW PROFILE
         </a>
      
           <button
           style={{ float: 'right', backgroundColor:'white',border: 'none',borderColor:'white'}}
-          name="id"
+          name={item.firstname}
           value={item._id}
           onClick= {this.deleteKid}
            
@@ -138,14 +185,14 @@ class ParentPortal extends Component  {
           </button>
               
 
-      </CardBody>
-</Card> 
-</Col>
+              </CardBody>
+        </Card> 
+        </Col>
 
     
-    
-    
+
     );
+    
 
 
 
@@ -157,7 +204,7 @@ class ParentPortal extends Component  {
          
  
       <Container>
-
+{/* 
         <Sidebar
            routes={appRoutes}
            logoText={"HomeZone"}
@@ -165,28 +212,29 @@ class ParentPortal extends Component  {
            image={image}
            color="blue"
           
-           />
+           /> */}
 
       <Row>
-        <h1>My Kids</h1>
-        <h3>Family Code: 2345</h3>
+        <h1>{this.state.parentinfo.firstname}'s HomeZone</h1>
+        <h3>Family Code: {this.state.parentinfo.code}</h3>
+        <h2>My Kids</h2>
         <p>Add new kids here and give them your family code so they can connect with you.</p>
     
         {listKids}
         <SimpleModal 
           buttontext="+ Add New Kid"
           modaltitle="Add A Foster Kid">
-           <p>This is a Modal </p> 
+           <p>Enter the name of the kid you want to add. </p> 
            <div>
                   <div className="form-group">
                   <label htmlFor="email">Kid Name</label>
                   <input
                     className="form-control"
                     id="email"
-                    name="firstname"
+                    name="newkidname"
                     type="text"
                     placeholder="Enter first name"
-                    value={this.state.firstname}
+                    value={this.state.newkidname}
                     onChange={this.handleChange}
                     />   
 

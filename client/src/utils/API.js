@@ -29,6 +29,10 @@ export default {
   saveParentUser: function(parentData) {
     return axios.post("/api/parents", parentData);
   },
+
+  updateParentUser: function(id, parentData) {
+    return axios.put("/api/parents/"+ id, parentData);
+  },
   getKids: function() {
     return axios.get("/api/kids");
   },

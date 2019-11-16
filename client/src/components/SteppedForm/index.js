@@ -23,9 +23,14 @@ class SteppedForm extends React.Component {
       usstate: '',
       isfoster: 0,
       istheraputic: 0,
-      isrespite: 0,
-      welcome: '',
-      rules: '',
+
+      isrespite:0,
+      welcome:'',
+      rules:'',
+      code:'',
+      
+      
+
     }
   }
 
@@ -46,22 +51,28 @@ class SteppedForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const { firstname, email, username, password, phone, familyname, usstate, isfoster, istheraputic, isrespite, welcome, rules } = this.state
-    alert(`Your registration detail: \n 
-           Name ${firstname} \n 
-           Email: ${email} \n 
-           Username: ${username} \n
-           Phone: ${phone} \n
-           Family Name: ${familyname} \n
-           US State: ${usstate} \n
-           Is Foster: ${isfoster} \n
-           Is Theraputic: ${istheraputic} \n
-           Is Respite: ${isrespite} \n
-           Welcome: ${welcome} \n
-           Rules: ${rules} \n
-           Password: ${password}`)
+
+    const { firstname, email, username, password,phone, familyname,usstate, isfoster,istheraputic,isrespite, welcome, rules } = this.state
+    // alert(`Your registration detail: \n 
+    //        Name ${firstname} \n 
+    //        Email: ${email} \n 
+    //        Username: ${username} \n
+    //        Phone: ${phone} \n
+    //        Family Name: ${familyname} \n
+    //        US State: ${usstate} \n
+    //        Is Foster: ${isfoster} \n
+    //        Is Theraputic: ${istheraputic} \n
+    //        Is Respite: ${isrespite} \n
+    //        Welcome: ${welcome} \n
+    //        Rules: ${rules} \n
+    //        Password: ${password}`)
+
 
     if (this.state.username && this.state.password) {
+
+      this.setState({code: (Math.floor(1000 + Math.random() * 9000)).toString()});
+
+
       API.saveParentUser({
         firstname: this.state.firstname,
         familyname: this.state.familyname,
@@ -70,9 +81,12 @@ class SteppedForm extends React.Component {
         password: this.state.password,
         phone: this.state.phone,
         occupation: this.state.occupation,
-        usstate: this.state.usstate,
-        welcome: this.state.welcome,
-        rules: this.state.rules,
+
+        usstate:this.state.usstate,
+        welcome:this.state.welcome,
+        rules:this.state.rules,
+        code: this.state.code,
+
       })
         .then(this.switchPage())
         .catch(err => console.log(err));
@@ -402,9 +416,11 @@ function Step3(props) {
       <label>Type of Home</label>
       <p>
         <label>
-          <input type="checkbox" name="isfoster" onChange={props.handleChecked} />
-          <span>Foster Home</span>
-        </label>
+
+        <input type="checkbox"  name="isfoster" onChange={props.handleChange} />
+        <span>Foster Home</span>
+      </label>
+
       </p>
 
 
