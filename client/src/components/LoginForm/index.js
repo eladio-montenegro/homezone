@@ -11,9 +11,10 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username:" ",
-      password:" ",
-      selectedUser:{}
+      username:"",
+      password:"",
+      selectedUser:{},
+      kidUser:{}
     }
   }
 
@@ -27,16 +28,17 @@ class LoginForm extends React.Component {
 
    
   handleSubmit = event => {
-    event.preventDefault()
+    event.preventDefault();
     //enter login info here
-    const {username,password} = this.state
+    const {username,password} = this.state;
 
-
+        //parent login 
     if (this.state.username && this.state.password) {
+      let gotit=false;
       //you can put api calls here
       console.log("they exist!");
       API.getParents()
-      .then(  res => {
+      .then( res => {
 
           this.setState();
           //for loop, same response to new array 
@@ -47,19 +49,53 @@ class LoginForm extends React.Component {
             if( parentArray[ i ].username === this.state.username ){
               this.state.selectedUser = parentArray[ i ];
           console.log (this.state.selectedUser);
+          gotit=true;
           localStorage.setItem("id", parentArray[i]._id);
           
-        
           window.location.href = "/parentportal";
-     
-              break;
-                
-          ;
-}}//delete this at some point 
-        console.log (res.data);
+          }
+        
+          }
+
+          if(gotit===false){
+
+            this.kidLogin(); 
+          };
+          
+          
       }) 
+
       .catch(err => console.log(err));
   }
+}
+
+kidLogin =()=> {
+
+  API.getKids()
+  .then(  res => {
+
+     console.log ("all the kids"+ res.data);
+ 
+     let kidArray = res.data;
+
+     var j;
+     for (j = 0; j < kidArray.length; j++) {
+       if(kidArray[j].username === this.state.username ){
+         this.state.kidUser = kidArray[ j ];
+    
+            localStorage.setItem("kidid", kidArray[j]._id);
+            
+            window.location.href = "/KidPortal";
+
+       }
+       else{console.log("couldn't log in");}
+      
+      
+      
+      
+      }
+
+        });
 }
   
 

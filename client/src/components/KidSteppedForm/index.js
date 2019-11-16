@@ -49,23 +49,12 @@ class KidSteppedForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     const { username,password,nickname, code, pronouns, hobbies,allergies, petpeeves,likes, dislikes,religion,freenote} = this.state
-    alert(`Your registration detail: \n 
-           Username: ${username} \n 
-           Password: ${password} \n 
-           Nickname ${nickname} \n 
-           Code: ${code} \n 
-           Pronouns: ${pronouns} \n 
-           Hobbies: ${hobbies} \n
-           Allergies: ${allergies} \n
-           Petpeeves: ${petpeeves} \n
-           Likes: ${likes} \n
-           Religion: ${religion} \n
-           Freenote: ${freenote} \n
-           Dislikes: ${dislikes}` 
-          )
+
 
     if (this.state.username && this.state.password) {
       API.saveKidUser({
+        username: this.state.username,
+        password: this.state.password,
         nickname:  this.state.nickname,
         code: this.state.code,
         pronouns: this.state.pronouns,

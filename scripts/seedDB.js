@@ -12,8 +12,10 @@ mongoose.connect(
 
 const kidSeed = [
   {
-    "_id" : ObjectId("5dcb7c2be29e574990b935f1"),
+
     "nickname" : "Ver",
+    "username": "v",
+    "password": "password",
     "firstname" : "Veronica",
     "lastname" : "Hernandez",
     "fosterfamilies" : [ 
@@ -23,7 +25,7 @@ const kidSeed = [
 
 /* 2 */
 {
-    "_id" : ObjectId("5dcb7c2be29e574990b935f2"),
+   
     "nickname" : "Javi",
     "firstname" : "Javier",
     "lastname" : "Cruz",
@@ -37,7 +39,7 @@ const parentSeed= [
 
   /* 1 */
 {
-  "_id" : ObjectId("5dcb7c2ae29e574990b935ee"),
+ 
   "firstname" : "Jennifer",
   "familyname" : "Ramos",
   "fosterkids" : [ 
@@ -47,7 +49,7 @@ const parentSeed= [
 
 /* 2 */
 {
-  "_id" : ObjectId("5dcb7c2ae29e574990b935ef"),
+
   "firstname" : "Eladio",
   "familyname" : "Montenegro",
   "fosterkids" : [ 
