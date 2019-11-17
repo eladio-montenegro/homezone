@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Tab, Tabs } from 'react-materialize';
+import { Tab, Tabs, Select, Button, } from 'react-materialize';
 import Footer from "../components/Footer";
 import ChildView from "../components/ChildView";
 import { cpus } from "os";
@@ -9,24 +9,39 @@ class KidPortal extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            kidid: "5dcb7c2be29e574990b935f1",
             coinCount: 0,
-            nickname: ""
+            nickname: "",
+            status: ""
         }
     }
+    // handleChange = event => {
+    //     const { name, value } = event.target
+    //     this.setState({
+    //         [name]: value
+    //     })
+    // }
+
+    // handleSubmit = event => {
+    //     event.preventDefault()
+    //     const { coinCount, nickname, status } = this.state
+    //     alert(
+    //         `${coinCount, nickname, status} \n `
+    //     )
+    // }
 
     render() {
-        // API.getKid(id)
-        //     .then(res => {
-        //         this.setState({ coinCount: res.data.coinCount });
-        //     })
-        //     .catch(err => console.log(err));
-
+        API.getKid("5dcb7c2be29e574990b935f1")
+            .then(res => {
+                this.setState({ coinCount: res.data.coinCount, nickname: res.data.nickname });
+            })
+            .catch(err => console.log(err))
         return (
             <div className="container">
                 <div className="row">
                     <div className="col l6">
                         {/* Welcoming Message */}
-                        <h4>Welcome to Homebase, Nickname</h4>
+                        <h4>Welcome to Homebase, {this.state.nickname} </h4>
                     </div>
                     <div className="col l4 offset-l2">
                         {/* Join New Home */}
@@ -74,11 +89,12 @@ class KidPortal extends Component {
                                     <div class="row">
                                         <div class="col l8">
                                             {/* Goals */}
-                                            <p class="newgoal"></p>
-                                            <p class="newgoal">Fold Laundry</p>
-                                            <p class="newgoal">Pass Physics Exam</p>
-                                            <p>Ask for a new goal + </p>
-
+                                            <p className="newgoal"></p>
+                                            <p className="newgoal">Fold Laundry</p>
+                                            <p className="newgoal">Pass Physics Exam</p>
+                                            <Button className="askGoal" waves="light" style={{ marginRight: '5px' }}>
+                                                Ask for a new goal +
+                                            </Button>
                                         </div>
                                         <div class="col l2">
                                             {/* Coin Value */}
@@ -87,8 +103,20 @@ class KidPortal extends Component {
                                         </div>
                                         <div class="col l2">
                                             {/* Status */}
-                                            <button>pending</button> {/* Pending, In Progress, Done */}
-                                            <button>pending</button>
+                                            {/* <Select value="" onChange={handleChange}>
+                                                <option value="" disabled>
+                                                    Set Status
+                                                </option>
+                                                <option value="Not Started">
+                                                    Not Started
+                                                </option>
+                                                <option value="In Progress">
+                                                    In Progress
+                                                </option>
+                                                <option value="Finished">
+                                                    Finished
+                                                </option>
+                                            </Select> */}
                                         </div>
                                     </div>
                                     {/* My Goals: Reward Labels */}
@@ -111,6 +139,9 @@ class KidPortal extends Component {
                                             <p>Pizza Dinner</p>
                                             <p>Delay Curfew by 30 minutes</p>
                                             <p>Ask for a new reward + </p>
+                                            <Button className="askReward" waves="light" style={{ marginRight: '5px' }}>
+                                                Ask for a new reward +
+                                            </Button>
                                         </div>
                                         <div class="col l2">
                                             {/* Price */}

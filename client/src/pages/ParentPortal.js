@@ -19,9 +19,6 @@ import SimpleModal from "../components/SimpleModal";
 
 
 class ParentPortal extends Component  {
-
- 
-
   state = {
     parentid: "5dcb7c2ae29e574990b935ee",
     fosterkids: [],
@@ -57,13 +54,9 @@ class ParentPortal extends Component  {
 
 
   loadKids =(fosterKids) => {
-    
-
     fosterKids.map(element => {
-   
-
       API.getKid(element)
-      .then(  res => {
+      .then( res => {
         this.setState({ fosterkids: [...this.state.fosterkids,res.data] });
  
       })
@@ -154,43 +147,29 @@ class ParentPortal extends Component  {
     
     let appRoutes=[{name:"Jessica",path: "/parentportal/jessica", layout:"Googs", icon:""}];
     let listKids= this.state.fosterkids.map((item, i) =>  
-
-    
-    <Col  size="col s12 m4" key={i}>
-     
-    <Card>
-      <CardHeader color="danger">
-        <h4>{item.firstname}</h4>
+      <Col  size="col s12 m4" key={i}>
+        <Card>
+          <CardHeader color="danger">
+            <h4>{item.firstname}</h4>
         
-      </CardHeader>
-      <CardBody>
-        <p>{item.pronouns}
-        </p>
-        <a
-          href={item.profilelink}
-        >
-          VIEW PROFILE
-        </a>
+          </CardHeader>
+          <CardBody>
+            <p>{item.pronouns}</p>
+            <a href={`ParentPortal/kidportal/${item._id}`}>VIEW PROFILE</a>
      
-          <button
-          style={{ float: 'right', backgroundColor:'white',border: 'none',borderColor:'white'}}
-          name={item.firstname}
-          value={item._id}
-          onClick= {this.deleteKid}
-           
-          >
+            <button
+            style={{ float: 'right', backgroundColor:'white',border: 'none',borderColor:'white'}}
+            name={item.firstname}
+            value={item._id}
+            onClick= {this.deleteKid}
+            >
             
-           REMOVE
+            REMOVE
           
-          </button>
-              
-
-              </CardBody>
+            </button>
+          </CardBody>
         </Card> 
-        </Col>
-
-    
-
+      </Col>
     );
     
 
