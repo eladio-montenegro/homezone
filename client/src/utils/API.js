@@ -26,6 +26,9 @@ export default {
   saveKidUser: function(kidData) {
     return axios.post("/api/kids", kidData);
   },
+  updateKidUser: function(id, kidData) {
+    return axios.put("/api/kids/"+ id, kidData);
+  },
 
   deleteKid: function(id) {
     return axios.delete("/api/kids/" + id);
