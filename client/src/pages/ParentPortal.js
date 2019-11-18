@@ -140,6 +140,15 @@ class ParentPortal extends Component  {
    
   }
 
+
+  viewKidProfile = (id) => {
+
+    localStorage.setItem("parentkidprofile", id);
+
+    window.location.href = "parentportal/kidportal/" + id; 
+   
+  }
+
   
   render() {
  
@@ -154,7 +163,7 @@ class ParentPortal extends Component  {
           </CardHeader>
           <CardBody>
             <p>{item.pronouns}</p>
-            <a href={`ParentPortal/kidportal/${item._id}`}>VIEW PROFILE</a>
+            <a onClick={() => this.viewKidProfile(item._id)} >VIEW PROFILE</a>
      
             <button
             style={{ float: 'right', backgroundColor:'white',border: 'none',borderColor:'white'}}

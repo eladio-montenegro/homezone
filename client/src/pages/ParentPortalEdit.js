@@ -58,7 +58,7 @@ class ParentPortalEdit extends Component  {
       isrespite:0,
       welcome:'',
       rules:'',
-      parentid: "5dcb7c2ae29e574990b935ee",
+      parentid:  localStorage.getItem("id"),
       fosterkids: [],
       parentinfo: {},
       
@@ -76,7 +76,7 @@ class ParentPortalEdit extends Component  {
   loadParent= () => {
     this.setState({ fosterkids: [] });
     
-      API.getParent("5dcb7c2ae29e574990b935ee")
+      API.getParent(this.state.parentid)
       .then(  res => {
 
           this.setState({parentinfo:res.data, firstname: res.data.firstname, familyname:res.data.familyname,

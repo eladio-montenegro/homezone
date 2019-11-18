@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { CheckList, CheckListItem } from "../components/Checklist";
-import CTABtn from "../components/CTABtn";
 import ImageCard from "../components/ImageCard";
 import ImgCarasol from "../components/ImgCarasol";
 // import Footer from "../components/Footer";
