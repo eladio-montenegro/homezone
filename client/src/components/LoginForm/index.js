@@ -91,14 +91,16 @@ kidLogin =()=> {
             window.location.href = "/KidPortal";
 
        }
-       else{console.log("couldn't log in");}
-      
-      
-      
+       else{
+}
       
       }
 
         });
+
+
+        alert("Opps! Couldn't find your username or password. Try again!");
+        window.location.href = "/login";
 }
   
 
@@ -106,6 +108,9 @@ kidLogin =()=> {
   render() {    
     return (
       <React.Fragment>
+        
+        <h1>Login to Your HomeZone!</h1>
+        <p>Never share your password with anyone.</p>
         <div className="form-group">
         <label htmlFor="username">Username</label>
         <input
@@ -133,7 +138,7 @@ kidLogin =()=> {
         />
       </div>
       <div style={{marginTop:"30px"}} >
-      <Button color="primary" type="button" onClick={this.handleSubmit}> SAVE</Button>
+      <Button color="primary" type="button" onClick={this.handleSubmit}> Login</Button>
       <div id="notice" style={{display:"none"}}><h3>Profile Saved!</h3></div>
       </div>
       

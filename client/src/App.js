@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+
 import SideNav from "./components/SideNav";
 import ParentSignUp from "./pages/ParentSignUp";
 import ParentPortal from "./pages/ParentPortal";
@@ -12,13 +12,15 @@ import KidSignUp from "./pages/KidSignUp";
 import Login from "./pages/Login";
 import ChildView from "./components/ChildView";
 import KidPortal from "./pages/KidPortal";
+import KidJournal from "./pages/KidJournal";
+import KidHomes from "./pages/KidHomes";
 
 function App() {
 
   return (
     <Router>
       <div>
-       <Nav/>
+       
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/home" component={Homepage} />
@@ -29,6 +31,8 @@ function App() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/kidsignup" component={KidSignUp}/>
           <Route exact path="/kidportal/" component={KidPortal}/>
+          <Route exact path="/kidjournal/" component={KidJournal}/>
+          <Route exact path="/kidhomes/" component={KidHomes}/>
           <Route component={NoMatch} />
         </Switch>
       </div>

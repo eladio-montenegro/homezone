@@ -14,6 +14,7 @@ class KidSteppedForm extends React.Component {
       currentStep: 1,
       username: '',
       password:'',
+      firstname:'',
       nickname:  '',
       code: '',
       pronouns: '',
@@ -55,6 +56,7 @@ class KidSteppedForm extends React.Component {
       API.saveKidUser({
         username: this.state.username,
         password: this.state.password,
+        firstname: this.state.firstname,
         nickname:  this.state.nickname,
         code: this.state.code,
         pronouns: this.state.pronouns,
@@ -153,6 +155,7 @@ nextButton(){
           currentStep={this.state.currentStep} 
           handleChange={this.handleChange}
           firstname={this.state.firstname}
+          nickname={this.state.nickname}
           username={this.state.username}
           email={this.state.email}
           password={this.state.password}
@@ -205,6 +208,24 @@ function Step2(props) {
         <div className="all">
         <h3>Create your Account</h3>
         <p>Don't share your password with anyone!</p>
+
+
+
+        <label htmlFor="firstname">First Name</label>
+        <input
+          className="form-control"
+          id="firstname"
+          name="firstname"
+          type="text"
+          placeholder="Enter your legal first name"
+          value={props.firstname}
+          onChange={props.handleChange}
+          />       
+        
+        
+        
+        
+        
         <div className="form-group">
         <label htmlFor="nickname">Nick Name</label>
         <input
@@ -213,7 +234,7 @@ function Step2(props) {
           name="nickname"
           type="text"
           placeholder="Enter your first name"
-          value={props.firstname}
+          value={props.nickname}
           onChange={props.handleChange}
           />
           </div>
@@ -299,17 +320,6 @@ function Step3(props) {
       onChange={props.handleChange}
       />
       </div>
-
-    <label htmlFor="pronouns">Likes</label>
-    <input
-      className="form-control"
-      id="likes"
-      name="likes"
-      type="text"
-      placeholder="ie Favorite Color,animal, day of the week"
-      value={props.likes}
-      onChange={props.handleChange}
-      />
     
 
 
@@ -325,33 +335,6 @@ function Step3(props) {
       onChange={props.handleChange}
       />
 </div>
-
-
-    <div className="form-group">
-    <label htmlFor="allergies">List any Allergies</label>
-    <input
-      className="form-control"
-      id="allergies"
-      name="allergies"
-      type="text"
-      placeholder="ie peanuts, carrots"
-      value={props.allergies}
-      onChange={props.handleChange}
-      />      
-    </div>
-
-    <div className="form-group">
-    <label htmlFor="email">Do you practice any religion?</label>
-    <input
-      className="form-control"
-      id="religion"
-      name="religion"
-      type="text"
-      placeholder="ie Christian, Jewish, Athiest,"
-      value={props.religion}
-      onChange={props.handleChange}
-      />      
-    </div>
 
     <div className="form-group">
       <label htmlFor="rules">What else do you want your family to know about you?</label>

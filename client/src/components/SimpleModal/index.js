@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from "../CustomButtons/Button.js";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -21,7 +22,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
   paper: {
     position: 'absolute',
-    width: 600,
+    width: 350,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -30,8 +31,9 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
-  }
+    width: 180,
+  },
+  
 }));
 
 export default function SimpleModal({children,modaltitle,buttontext}) {

@@ -6,10 +6,17 @@ h1 .black {
     margin-bottom: 1px;
     }
 
+h1 {
+
+    color: rgb(63, 63, 63) !important;
+    font-family: "Baloo Bhai",arial sans-serif !important;
+    font-size: 30px;
+}
+
 h2 {
-    color: #444444 !important;
-    font-family: 'Work Sans',arsial sans-serif;
-    font-size: 40px;
+    color: rgb(63, 63, 63) !important;
+    font-family: 'Work Sans',arial sans-serif !important;
+    font-size: 20px !important;
     margin-top: 20px;
     margin-bottom: 1px;
     }
@@ -25,7 +32,7 @@ h3 {
 p{
     font-family: 'Montserrat', sans-serif !important;
     font-size: 18px !important;
-    color: #999999 !important;
+
 }
 
 li{
@@ -60,3 +67,13 @@ li{
     width:100%;
     object-fit: cover;
   }
+
+
+  .emptystate {
+      color: rgb(82, 82, 82);
+      background-color: rgb(202, 202, 202);
+      text-align:center;
+      padding:20px;
+  }
+
+

@@ -12,6 +12,7 @@ import Card from "../components/Card/Card.js";
 import CardBody from "../components/Card/CardBody.js";
 import CardHeader from "../components/Card/CardHeader.js";
 import CardIcon from "../components/Card/CardIcon.js";
+import Sidebar from "../components/Sidebar/Sidebar.js";
 
 import Button from "../components/CustomButtons/Button.js";
 import SimpleModal from "../components/SimpleModal";
@@ -157,7 +158,7 @@ class ParentPortal extends Component  {
     let listKids= this.state.fosterkids.map((item, i) =>  
       <Col  size="col s12 m4" key={i}>
         <Card>
-          <CardHeader color="danger">
+          <CardHeader color="info">
             <h4>{item.firstname}</h4>
         
           </CardHeader>
@@ -189,22 +190,16 @@ class ParentPortal extends Component  {
       <div>
 
          
- 
-      <Container>
-{/* 
-        <Sidebar
-           routes={appRoutes}
-           logoText={"HomeZone"}
-           logo={logo}
-           image={image}
-           color="blue"
-          
-           /> */}
+<Sidebar></Sidebar>
 
+      <Container>
+
+        
       <Row>
+      <Col  size="col s12 l10 m9 offset-l2 offset-m4">
         <h1>{this.state.parentinfo.firstname}'s HomeZone</h1>
-        <h3>Family Code: {this.state.parentinfo.code}</h3>
-        <h2>My Kids</h2>
+        {/* <h3>Family Code: {this.state.parentinfo.code}</h3> */}
+        <h5>My Kids</h5>
         <p>Add new kids here and give them your family code so they can connect with you.</p>
     
         {listKids}
@@ -236,6 +231,8 @@ class ParentPortal extends Component  {
         
         <Col  size="col s12 m4">
         
+          </Col>
+
           </Col>
     
         </Row>

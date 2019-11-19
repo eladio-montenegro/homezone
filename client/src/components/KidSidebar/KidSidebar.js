@@ -7,19 +7,23 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 const drawerWidth = 240;
 
@@ -67,38 +71,37 @@ function ResponsiveDrawer(props) {
 
   const LogOut=()=> {
 
-    localStorage.setItem("id", "");
+    localStorage.setItem("kidid", "");
     localStorage.setItem("parentkidprofile", "");
     window.location.href = "/home";
-  };
-
+  }
 
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider />
+      <Divider/>
       <List>
 
-      <a  href="/parentportal" ><ListItem button key="Dashboard"> <ListItemIcon> <DashboardIcon/> </ListItemIcon> <ListItemText style={{color:'black'}}>Dashboard</ListItemText> </ListItem> </a>
-      <a  href="/editparentportal" > <ListItem button key="Profile"> <ListItemIcon> <AccountCircleIcon /> </ListItemIcon> <ListItemText style={{color:'black'}}>  My Profile</ListItemText> </ListItem> </a>
+     <a  href="/kidportal" > <ListItem button key="Dashboard"> <ListItemIcon> <DashboardIcon/> </ListItemIcon> <ListItemText style={{color:'black'}}>Goal Dashboard</ListItemText> </ListItem>  </a>
+     <a  href="/kidprofile" > <ListItem  button key="Profile"> <ListItemIcon> <AccountCircleIcon /> </ListItemIcon> <ListItemText style={{color:'black'}}>My Profile</ListItemText> </ListItem> </a>
+     <a  href="/kidjournal" > <ListItem  button key="Journal"> <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon> <ListItemText style={{color:'black'}}>Sharing Journal</ListItemText> </ListItem> </a>
+     <a  href="/kidnotifications" > <ListItem  button key="Notifications">  <ListItemIcon> <NotificationsIcon/> </ListItemIcon > <ListItemText style={{color:'black'}}>Notifications</ListItemText> </ListItem> </a>
+     <a  href="/kidhomes" > <ListItem  button key="PastHomes"> <ListItemIcon> <QueryBuilderIcon/> </ListItemIcon> <ListItemText style={{color:'black'}} > Past Homes</ListItemText > </ListItem> </a>
+ 
       </List>
-      <Divider />
+     <Divider/>
       <List>
+      
         {['Log Out'].map((text, index) => (
-
-          <a  onClick={LogOut} > 
-          <ListItem button key={text} style={{color:'black'}}>
-          <ListItemIcon> <ExitToAppIcon/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-          </a>
+          <a  onClick={LogOut} > <ListItem  button key={text}>
+           
+            <ListItemIcon> <ExitToAppIcon/></ListItemIcon>
+            <ListItemText style={{color:'black'}} primary={text} />
+          </ListItem> </a>
         ))}
       </List>
     </div>
   );
-
-
-
 
   return (
     <div className={classes.root}>
@@ -115,7 +118,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-           Foster Parent Portal
+           My HomeZone
           </Typography>
         </Toolbar>
       </AppBar>
