@@ -2,6 +2,7 @@ import React from "react";
 import API from "../../utils/API.js";
 import { CheckList, CheckListItem } from "../Checklist";
 import "./style.css";
+import { Col, Row, Container } from "../Grid";
 
 
 
@@ -147,6 +148,11 @@ class SteppedForm extends React.Component {
   render() {
     return (
       <React.Fragment>
+
+      <Container>
+                <Row>
+                  <Col size="col s12 l10 m9 offset-l2 offset-m2 offset-s1">
+        <br></br>
         <h3>Parent Sign Up</h3>
         <p>Step {this.state.currentStep} of 5</p>
 
@@ -192,7 +198,9 @@ class SteppedForm extends React.Component {
           {this.nextButton()}
 
         </form>
-
+        </Col>
+            </Row>
+             </Container>
 
       </React.Fragment>
 
@@ -404,7 +412,7 @@ function Step3(props) {
       </div>
 
 
-
+    <br></br>
       <label>Type of Home</label>
       <p>
         <label>
@@ -485,7 +493,8 @@ function Step5(props) {
     <React.Fragment>
       <div className="form-group">
         <h2>Your Home Profile has Been Created!</h2>
-        <img className="successimg" src="https://www.seekpng.com/png/detail/14-147262_confetti-icon.png" width="200px" alt="confetti" />
+        <br></br>
+        <img class="materialboxed parent responsive" src="img/fosterparent1.png" height="100"></img>
 
 
 

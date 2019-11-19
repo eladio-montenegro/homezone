@@ -77,3 +77,23 @@ li{
   }
 
 
+  .tabs .tab a:hover, .tabs .tab a.active {
+
+    color:#7432aa !important;
+    background-color:grey !important;
+  }
+
+  .tabs .tab a {
+
+
+    color:#7432aa !important;
+
+  }
+  
+  
+  .tabs .tab a:focus, .tabs .tab a.active:focus {
+  
+    color:#a36ece !important;
+    background-color:grey;
+  }
+

@@ -2,6 +2,7 @@ import React from "react";
 import API from "../../utils/API.js";
 import "./style.css";
 import Button from "../CustomButtons/Button.js";
+import { Col, Row, Container } from "../Grid";
 
 
 
@@ -108,7 +109,9 @@ kidLogin =()=> {
   render() {    
     return (
       <React.Fragment>
-        
+        <Container>
+          <Row>
+            <Col size="col s12 l10 m9 offset-l2 offset-m2 offset-s1">
         <h1>Login to Your HomeZone!</h1>
         <p>Never share your password with anyone.</p>
         <div className="form-group">
@@ -141,7 +144,9 @@ kidLogin =()=> {
       <Button color="primary" type="button" onClick={this.handleSubmit}> Login</Button>
       <div id="notice" style={{display:"none"}}><h3>Profile Saved!</h3></div>
       </div>
-      
+      </Col>
+      </Row>
+      </Container>
       </React.Fragment>
 
       

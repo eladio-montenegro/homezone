@@ -68,6 +68,30 @@ class ParentPortal extends Component  {
       
   }
 
+    //checks to see if we are entering from parent portal or from a kid login
+    determineEntry=()=> {
+
+      if (this.state.parentid){
+
+ 
+        this.loadParent();
+        
+      }
+
+      else {
+          //if neither then we need to redirect to the login page
+      
+          window.location.href = "/login";
+
+      }
+
+      
+
+     
+    }
+
+
+
 
   handleFormSubmit = event => {
     event.preventDefault();
