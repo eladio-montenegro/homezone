@@ -2,6 +2,7 @@ import React from "react";
 import API from "../../utils/API.js";
 import { CheckList,CheckListItem } from "../Checklist";
 import "./style.css";
+import { Col, Row, Container } from "../Grid";
 
 
 
@@ -141,6 +142,9 @@ nextButton(){
   render() {    
     return (
       <React.Fragment>
+        <Container>
+          <Row>
+            <Col size="col s12 l10 m9 offset-l2 offset-m2 offset-s1">
 
       <form onSubmit={this.handleSubmit}>
       {/* 
@@ -180,7 +184,9 @@ nextButton(){
         {this.nextButton()}
 
       </form>
-
+          </Col>
+            </Row>
+             </Container>
       
       </React.Fragment>
 
@@ -195,7 +201,10 @@ function Step1(props) {
   } 
   return(
     <div className="step1">
+      <br></br>
     <h2>With HomeZone, connecting with your foster homes is fast and easy!</h2>
+    <br></br>
+    <img class="materialboxed parent responsive" src="img/fosteryouth2.png" height="100"></img>
     </div>
   );
 }
@@ -205,7 +214,10 @@ function Step2(props) {
     return null
   } 
   return(
+
+
         <div className="all">
+          <br></br>
         <h3>Create your Account</h3>
         <p>Don't share your password with anyone!</p>
 
@@ -305,6 +317,7 @@ function Step3(props) {
   } 
   return(
     <div className="all">
+      <br></br>
     <h3>Tell Us About Yourself</h3>
     <p>Everything you write here will be shared with your foster parents when you join their family. 
       This information helps them understand you.</p>
@@ -371,8 +384,10 @@ function Step4(props) {
   return(
      <React.Fragment>
     <div className="form-group">
+      <br></br>
     <h2>Your Home Profile has Been Created!</h2>
-    <img className="successimg" src="https://www.seekpng.com/png/detail/14-147262_confetti-icon.png" width="200px" alt="Girl in a jacket"/> 
+    <br></br>
+    <img class="materialboxed parent responsive" src="img/fosteryouth3.png" height="100"></img> 
     
   
     </div>

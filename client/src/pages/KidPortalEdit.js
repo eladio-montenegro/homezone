@@ -58,8 +58,6 @@ class KidPortalEdit extends Component  {
       foodrestrictions:'',
       kidid:  localStorage.getItem("kidid"),
       kidinfo: {},
-      
-      
     }
   }
 

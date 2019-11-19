@@ -312,10 +312,6 @@ class KidPortal extends Component {
 
         }
 
-
-
-
-
         this.getKid();
 
        
