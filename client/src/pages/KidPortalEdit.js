@@ -38,7 +38,7 @@ import TextField from '@material-ui/core/TextField';
 
 
 
-class ParentPortalEdit extends Component  {
+class KidPortalEdit extends Component  {
 
  
 
@@ -47,21 +47,17 @@ class ParentPortalEdit extends Component  {
     this.state = {
       currentStep: 1,
       firstname:  '',
-      familyname: "",
-      email:  '',
-      username: '',
-      password: '', 
-      phone: '',
-      occupation: '',
-      usstate:'',
-      isfoster: 0,
-      istheraputic: 0,
-      isrespite:0,
-      welcome:'',
-      rules:'',
-      parentid:  localStorage.getItem("id"),
-      fosterkids: [],
-      parentinfo: {},
+      nickname:'',
+      username:'',
+      password:'',
+      hobbies:'',
+      likes: '',
+      pronouns:'',
+      allergies:'',
+      bio:'',
+      foodrestrictions:'',
+      kidid:  localStorage.getItem("kidid"),
+      kidinfo: {},
       
       
     }
@@ -70,66 +66,41 @@ class ParentPortalEdit extends Component  {
   
 
   componentDidMount() {
-    this.loadParent();
+    this.loadKid();
     
   }
 
-  loadParent= () => {
-    this.setState({ fosterkids: [] });
+  loadKid= () => {
     
-      API.getParent(this.state.parentid)
+      API.getKid(this.state.kidid)
       .then(  res => {
 
-          this.setState({parentinfo:res.data, firstname: res.data.firstname, familyname:res.data.familyname,
-          email:res.data.email, username: res.data.username, password:res.data.password, phone:res.data.phone
-        ,occupation:res.data.occupation,usstate:res.data.usstate, isfoster:res.data.isfoster, istheraputic:res.data.istheraputic,
-      isrespite:res.data.isrespite, welcome:res.data.welcome, rules:res.data.rules});
+          this.setState({kidinfo:res.data});
           
-          this.loadKids(res.data.fosterkids);
+         
       }) 
       .catch(err => console.log(err));
   };
 
 
-  loadKids =(fosterKids) => {
-    
-
-    fosterKids.map(element => {
-
-      API.getKid(element)
-      .then(  res => {
-        this.setState({ fosterkids: [...this.state.fosterkids,res.data] });
-
-
-        
-          
-      })
-          .catch(err => console.log(err));
-          
-    })
-      
-  }
 
 
   handleSubmit = event => {
     event.preventDefault()
 
 
-    API.updateParentUser(this.state.parentid, {
+    API.updateKidUser(this.state.kidid, {
       firstname:  this.state.firstname,
-      familyname: this.state.familyname,
-      email: this.state.email,
-      username: this.state.username,
-      password: this.state.password, 
-      phone: this.state.phone,
-      occupation: this.state.occupation,
-      usstate:this.state.usstate,
-      welcome:this.state.welcome,
-      rules:this.state.rules,}
+      hobbies:this.state.hobbies,
+      dislikes:this.state.dislikes,
+      pronouns:this.state.pronouns,
+      allergies:this.state.allergies,
+      foodrestrictions: this.state.foodrestrictions,
+     }
       )
       .then(myDude => {
    
-        this.loadParent();
+        this.loadKid();
   
       })
       .catch(err => console.log(err));
@@ -300,70 +271,6 @@ class ParentPortalEdit extends Component  {
       </div>
 
 
-      <div className="form-group" >
-      <label htmlFor="usstate">State</label>
-      <select
-        className="browser-default"
-        id="usstate"
-        name="usstate"
-        value={this.state.usstate  || ''}
-        onChange={this.handleChange}
-        >
-
-          <option value="" >Choose your option</option>
-          <option value="AL">Alabama</option>
-          <option value="AK">Alaska</option>
-          <option value="AZ">Arizona</option>
-          <option value="AR">Arkansas</option>
-          <option value="CA">California</option>
-          <option value="CO">Colorado</option>
-          <option value="CT">Connecticut</option>
-          <option value="DE">Delaware</option>
-          <option value="DC">District Of Columbia</option>
-          <option value="FL">Florida</option>
-          <option value="GA">Georgia</option>
-          <option value="HI">Hawaii</option>
-          <option value="ID">Idaho</option>
-          <option value="IL">Illinois</option>
-          <option value="IN">Indiana</option>
-          <option value="IA">Iowa</option>
-          <option value="KS">Kansas</option>
-          <option value="KY">Kentucky</option>
-          <option value="LA">Louisiana</option>
-          <option value="ME">Maine</option>
-          <option value="MD">Maryland</option>
-          <option value="MA">Massachusetts</option>
-          <option value="MI">Michigan</option>
-          <option value="MN">Minnesota</option>
-          <option value="MS">Mississippi</option>
-          <option value="MO">Missouri</option>
-          <option value="MT">Montana</option>
-          <option value="NE">Nebraska</option>
-          <option value="NV">Nevada</option>
-          <option value="NH">New Hampshire</option>
-          <option value="NJ">New Jersey</option>
-          <option value="NM">New Mexico</option>
-          <option value="NY">New York</option>
-          <option value="NC">North Carolina</option>
-          <option value="ND">North Dakota</option>
-          <option value="OH">Ohio</option>
-          <option value="OK">Oklahoma</option>
-          <option value="OR">Oregon</option>
-          <option value="PA">Pennsylvania</option>
-          <option value="RI">Rhode Island</option>
-          <option value="SC">South Carolina</option>
-          <option value="SD">South Dakota</option>
-          <option value="TN">Tennessee</option>
-          <option value="TX">Texas</option>
-          <option value="UT">Utah</option>
-          <option value="VT">Vermont</option>
-          <option value="VA">Virginia</option>
-          <option value="WA">Washington</option>
-          <option value="WV">West Virginia</option>
-          <option value="WI">Wisconsin</option>
-          <option value="WY">Wyoming</option>
-        </select>
-        </div>
 
 
       <div className="form-group">
@@ -417,4 +324,4 @@ class ParentPortalEdit extends Component  {
 }
 
 
-export default ParentPortalEdit;
+export default KidPortalEdit;

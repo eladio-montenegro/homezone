@@ -4,6 +4,7 @@ import Jumbotron from "../components/Jumbotron";
 import { CheckList, CheckListItem } from "../components/Checklist";
 import ImageCard from "../components/ImageCard";
 import ImgCarasol from "../components/ImgCarasol";
+import Nav from "../components/Nav";
 // import Footer from "../components/Footer";
 import { cpus } from "os";
 
@@ -12,6 +13,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
+        <Nav/>
 
         <Container fluid>
           <Row margin="no-margin">

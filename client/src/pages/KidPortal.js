@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Tab, Tabs, Select, Button, } from 'react-materialize';
+import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import SimpleModal from "../components/SimpleModal";
 import Icon from '@material-ui/core/Icon';
+import KidSidebar from "../components/KidSidebar/KidSidebar.js";
 
 
 
@@ -26,10 +28,11 @@ class KidPortal extends Component {
             newreward:"",
             newrewardcoins:"",
            
-            nickname: "",
+            firstname: "",
             status: "",
             rewards: [],
-            goals: []
+            goals: [],
+            kidemail: "lotuslindez@gmail.com"
        
         }
     }
@@ -48,10 +51,40 @@ class KidPortal extends Component {
         
         API.getKid(this.state.fromparentprofile)
         .then(res => {
-            this.setState({ rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, nickname: res.data.firstname });
+            this.setState({ kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
             
             this.renderGoal();
             this.renderReward();
+
+
+            
+        if(this.state.goals.length >=1  && !this.state.kidid) {
+
+            document.getElementById("parentgoalemptystate").style.display = "none";
+
+        }
+
+        if(this.state.rewards.length >=1  && !this.state.kidid) {
+
+            document.getElementById("parentrewardemptystate").style.display = "none";
+
+        }
+
+            
+
+            
+            if(this.state.goals.length >=1 && this.state.kidid) {
+
+                document.getElementById("goalemptystate").style.display = "none";
+                
+    
+            }
+
+            if(this.state.rewards.length >=1 && this.state.kidid) {
+            document.getElementById("rewardemptystate").style.display = "none";
+        }
+
+
         
         })
         .catch(err => console.log(err));
@@ -133,6 +166,15 @@ class KidPortal extends Component {
 
         
          this.getKids(newentry);
+
+
+                document.getElementById("parentgoalemptystate").style.display = "none";
+                document.getElementById("goalemptystate").style.display = "none";
+             ;
+    
+            
+
+
                
        
      
@@ -155,10 +197,10 @@ class KidPortal extends Component {
     
     addReward = event => {
         var table = document.getElementById("rewardTable");
-        var row = table.insertRow();
+        var row = table.insertRow(1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(3);
+        var cell3 = row.insertCell(2);
        
 
         cell1.innerHTML = this.state.newreward;
@@ -173,7 +215,9 @@ class KidPortal extends Component {
 
         
          this.getKidRewards(newrewardentry);
-         console.log (newrewardentry);    
+           
+         document.getElementById("parentrewardemptystate").style.display = "none";
+         document.getElementById("rewardemptystate").style.display = "none"; 
      
     }
 
@@ -202,12 +246,51 @@ class KidPortal extends Component {
         
       };
 
+      hideFromKid=()=> {
+
+        document.getElementById("theaddrewardbutton").style.display = "none";
+        document.getElementById("theaddgoalbutton").style.display = "none";
+        document.getElementById("back").style.display = "none";
+        document.getElementById("parentgoalemptystate").style.display = "none";
+        document.getElementById("parentrewardemptystate").style.display = "none";
+
+        if(this.state.goals.length >1) {
+
+            document.getElementById("goalemptystate").style.display = "none";
+
+        }
+
+        if(this.state.rewards.length >1) {
+
+            document.getElementById("rewardemptystate").style.display = "none";
+
+        }
+
+
+
+
+
+      }
+
+      hideFromParent=()=> {
+
+        document.getElementById("kidsidebar").style.display = "none";
+        document.getElementById("goalemptystate").style.display = "none";
+        document.getElementById("rewardemptystate").style.display = "none";
+
+
+  
+
+        
+    }
+
       //checks to see if we are entering from parent portal or from a kid login
       determineEntry=()=> {
 
         if (this.state.kidid){
 
             this.setState({entry:this.state.kidid});
+            this.hideFromKid();
             
           
         }
@@ -217,7 +300,8 @@ class KidPortal extends Component {
             this.setState({entry:this.state.fromparentprofile});
            
            
-
+            this.hideFromParent();
+            
 
         }
 
@@ -247,23 +331,40 @@ class KidPortal extends Component {
 
 
         return (
+
+
+           
+                
             
-            <div className="container">
+            <Container>
+
+                
+
+                <div id="kidsidebar"><KidSidebar></KidSidebar> </div>
+                <Row>
+                <Col  size="col s12 l10 m9 offset-l2 offset-m4">
+
+                <div id="back">
+                <a href="/parentportal"> <h6>Back to My Portal</h6> </a>   
+                </div>
 
 
                 <div className="row">
-                    <div className="col l6">
+                    <div className="col l12">
                         {/* Welcoming Message */}
-                        <h4>Welcome to Homebase, {this.state.nickname} </h4>
+                        <h1>{this.state.firstname}'s Goal Dashboard </h1>
                     </div>
-                    <div className="col l4 offset-l2">
-                        {/* Join New Home */}
-                        <h6 className="joinNewHomeBtn">Join New Home</h6> {/*</div>Button will take you to a component to add Home Code*/}
-                    </div>
+                   
                 </div>
                 <div className="row">
                     {/* Three Tabs */}
-                    <div className="col l12">
+                    <div className="col l10 s12">
+
+
+                  
+
+                           
+
                         <Tabs className="tab-demo">
                             {/* My Goals Tab */}
                             <Tab title="My Goals" href="#myGoalsTab" className="col l12" active>
@@ -271,14 +372,14 @@ class KidPortal extends Component {
                                 <div id="myGoalsTab">
                                     {/* Heading */}
                                     <div className="row">
-                                        <div className="col s4 offset-s4">
-                                            <h5>My Goals</h5>
+                                        <div class="col s4">
+                                            <h5>My Coins</h5>
                                         </div>
-                                        <div className="offset-4"></div>
+                                       
                                     </div>
                                     {/* Coin Count Box */}
                                     <div className="row">
-                                        <div className="col l12">
+                                        <div className="col l12 s12">
                                             <div className="coinBox">
                                                 <p>You have</p>
                                                 <h4 className="coinCount">{this.state.coinCount} O</h4>
@@ -286,6 +387,13 @@ class KidPortal extends Component {
                                         </div>
                                     </div>
 
+                                    <div className="row">
+                                        <div class="col s4">
+                                            <h5>Goals</h5>
+                                        </div>
+                                       
+                                    </div>
+    
 
                                     {/* My Goals Labels*/}
                                     <div className="row">
@@ -301,16 +409,27 @@ class KidPortal extends Component {
                                         </thead>
 
                                         <tbody>
+
                         
                                         </tbody>
                                     </table>
-                                  
 
+                                    <div class="emptystate" id="goalemptystate">
+
+                                             <p> Looks like your parent hasn't set up any goals for you yet! Come back later. </p>
+
+                                     </div>
+                                     <div class="emptystate" id="parentgoalemptystate">
+
+                                             <p> You have not added any goals for {this.state.firstname}. Click on the button to add one as soon as you can. </p>
+
+                                     </div>                                 
+                                    <div id="theaddgoalbutton">
                                             <SimpleModal 
 
     
                                     buttontext="+ Add a Goal"
-                                    modaltitle="Add a New Goal">
+                                    modaltitle="New Goal">
                                     <p>Add a goal for your child to complete. </p> 
                                     <div>
                                             <div className="form-group">
@@ -337,19 +456,26 @@ class KidPortal extends Component {
                                             /> 
 
 
-                                            <div id="goaltoHide">
+                                            
                                             <Button color="primary" type="button" onClick={this.addGoal}> Add Goal</Button>   
                                             </div>
-                                            </div>
+                                            
 
                                     </div>
 
+
+                                    
                                     </SimpleModal>
  
-                           
+                                    </div>
                                     </div> 
 
-
+                                    <div className="row">
+                                        <div class="col s4">
+                                            <h5>Rewards</h5>
+                                        </div>
+                                       
+                                    </div>
 
                                     {/* Rewards, Price, Status */}
                                     <div className="row">
@@ -364,15 +490,28 @@ class KidPortal extends Component {
 
                                         <tbody>
                                         
+                                       
                                         </tbody>
                                     </table>
+                                    <div class="emptystate" id="rewardemptystate">
+
+                                        <p> Looks like your parent hasn't set up any rewards for you yet! Come back later. </p>
 
 
+
+                                        </div>
+                                        <div class="emptystate" id="parentrewardemptystate">
+
+                                            <p> You have not added any rewards for {this.state.nickname}. Click on the button to add one as soon as you can. </p>
+
+                                            </div> 
+
+                                    <div id="theaddrewardbutton">
                                     <SimpleModal 
 
     
                                     buttontext="+ Add a Reward"
-                                    modaltitle="Add a New Reward">
+                                    modaltitle="New Reward">
                                     <p>Add a reward for your child to earn by completing goals. </p> 
                                     <div>
                                             <div className="form-group">
@@ -407,22 +546,11 @@ class KidPortal extends Component {
                                     </div>
 
                                             </SimpleModal>
+                                            </div>
 
                                     </div>
                                 </div>
                             </Tab>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                             {/* Goal History Tab */}
@@ -430,14 +558,14 @@ class KidPortal extends Component {
                                 {/* Goal History Tab Data */}
                                 <div id="goalHistoryTab">
                                     <div className="row">
-                                        <div class="col s4 offset-s4">
+                                        <div class="col s4">
                                             <h5>Goal History</h5>
                                         </div>
-                                        <div className="offset-4"></div>
+                                       
                                     </div>
                                     {/* Coin History Boxes */}
                                     <div className="row">
-                                        <div class="col l6">
+                                        <div class="col l6 s6">
                                             <div className="coinBox">
                                                 {/*  Coins Earned */}
                                                 <p>Coins Earned</p>
@@ -445,7 +573,7 @@ class KidPortal extends Component {
                                                 {/* Add Dynamically */}
                                             </div>
                                         </div>
-                                        <div className="col l6">
+                                        <div className="col l6 s6">
                                             <div class="coinBox">
                                                 {/*  Coins Spent */}
                                                 <p>Coins Spent</p>
@@ -532,58 +660,15 @@ class KidPortal extends Component {
                                 </div>
                             </Tab>
                             {/* Journal Tab */}
-                            <Tab title="Journal" className="col l12" href="#journalTab" active>
-                                {/* Journal Tab Data */}
-                                <div id="journalTab">
-                                    {/* Heading */}
-                                    <div className="row">
-                                        <div className="col s4 offset-s4">
-                                            <h5>My Sharing Journal</h5>
-                                        </div>
-                                        <div className="offset-4"></div>
-                                    </div>
-                                    {/* Journal Box */}
-                                    <div className="journal">
-                                        <div className="row">
-                                            <div className="input-field col s8 offset-s2">
-                                                {/* Text Area */}
-                                                <textarea id="textarea1" className="materialize-textarea"></textarea>
-                                                <label htmlFor="textarea1">
-                                                    Write any thoughts, feelings or ideas you want to share with your guardians
-                                            </label>
-                                            </div>
-                                        </div>
-                                        {/* Submit Button */}
-                                        <div className="row">
-                                            <button>Submit</button>
-                                        </div>
-                                        <div className="col offset-2"></div>
-                                    </div>
-                                </div>
-                            </Tab>
+
                         </Tabs>
                     </div>
                 </div>
-                {/* Past Homes */}
-                <div className="row">
-                    <div className="col l6">
-                        {/* Heading */}
-                        <h5>My Past Homes</h5>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col l3">
-                        <h6 className="pasthome">The Hernandez Home</h6>
-                    </div>
-                    <div className="col l3">
-                        <h6 className="pasthome">The Smith Home</h6>
-                    </div>
-                    <div className="col l3">
-                        <h6 className="pasthome">The Johnson Home</h6>
-                    </div>
-                    Arrow {/*Arrow to be added by Lotus*/}
-                </div>
-            </div>
+         
+
+                </Col>
+                </Row>
+            </Container>
         );
     }
 }

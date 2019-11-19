@@ -8,27 +8,55 @@
 }
 .pasthome {
   height: 150px;
+  width:200px;
   padding: 20px;
-  border-style: solid;
-  border-color: black;
+  margin-right:30px;
   border-width: 0.5px;
-  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(216, 216, 216, 0.2), 0 1px 10px 0;
+  
+}
+
+.pasthome p{
+  margin: auto;
+  width: 50%;
 }
 .coinBox {
   height: 150px;
   padding: 20px;
-  border-style: solid;
-  border-color: black;
   border-width: 0.5px;
   text-align: center;
+  background-color: #00bdaa;
+  border-radius: 20px;
+  color:white;
 }
 .journal {
-  height: 200px;
+  height: 150px;
   padding: 20px;
-  border-style: solid;
-  border-color: black;
-  border-width: 0.5px;
+
 }
 .joinNewHomeBtn, .myGoalsTab, .goalHistoryTab, .journalTab {
   cursor: pointer;
+}
+
+.header {
+
+  background-color: rgb(228, 228, 228);
+}
+
+textarea.materialize-textarea{
+  height: 5rem;
+
+background-color: rgb(252, 252, 252); }
+
+
+.tabs .tab a:hover, .tabs .tab a.active {
+
+  color:#7432aa !important;
+}
+
+
+.tabs .tab a:focus, .tabs .tab a.active:focus {
+
+  color:#a36ece !important;
 }
