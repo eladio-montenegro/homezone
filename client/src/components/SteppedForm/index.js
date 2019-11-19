@@ -106,7 +106,7 @@ class SteppedForm extends React.Component {
   */
   previousButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep < 4 && currentStep != 1) {
+    if (currentStep < 4 && currentStep !== 1) {
       return (
         <button
           className="btn btn-secondary"

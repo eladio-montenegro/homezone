@@ -109,7 +109,7 @@ class Homepage extends Component {
                 imagesrc="https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/11916082_10100302486728005_448809646271839715_n.jpg?_nc_cat=103&_nc_oc=AQmDzU8ofp6EwGk6X2yoQaNmW8OBqks26mi-1T-3wOL1_l1XHhZo1Sj4YS6TWP5rl9A&_nc_ht=scontent-ort2-2.xx&oh=54254eb6ae9c44ca6c9a452dc13daba3&oe=5E1A29EF"
                 content="Client-side ,Server-side Code, GIT Management, Authentication"
                 action="Go to LinkedIn"
-                link="https://www.linkedin.com/in/lotuslindez/">
+                link="https://www.linkedin.com/in/eladiomontenegro/">
               </ImageCard>
 
               <ImageCard
@@ -117,7 +117,7 @@ class Homepage extends Component {
                 imagesrc="https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/31776078_962451223918050_2190139253139177472_n.jpg?_nc_cat=105&_nc_oc=AQnFkREDluNEy70sCiJ8VA3oG4L2PjV7ZgjSqTFNdaMecnbFeVCo1xbt_S48uezlIq0&_nc_ht=scontent-ort2-2.xx&oh=2a5e6b646a442e0816967196c155d348&oe=5E1ED78A"
                 content="Client-side, Server-side Code, Security and Code Standards"
                 action="Go to LinkedIn"
-                link="https://www.linkedin.com/in/lotuslindez/">
+                link="https://www.linkedin.com/in/jennifer-ramos-824325169/">
               </ImageCard>
 
             </Col>
