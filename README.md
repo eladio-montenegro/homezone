@@ -1,6 +1,6 @@
-# [Home Zone](www.homezoneapp.com)
+# [Home Zone](http://www.homezoneapp.com)
 
-##Background
+## Background
 
 On any given day, there are nearly 443,000 children in foster care in the United States. In 2017, more than 690,000 children spent time in U.S. foster care. On average, children remain in state care for nearly two years and six percent of children in foster care have languished there for five or more years.
 
@@ -9,11 +9,11 @@ It is hard for kids and teens to get acclimated to a new foster home. They usual
 Foster parents are also in a predicament. They are often not given enough or any information about a child other than their age. One of the most common points of anxiety for parents is being prepared for encouraging good behavior and preventing bad behavior. It is often a challenge to develop a clear system of rewards and discipline that is effective and easy to implement.
 
 
-##Problem Statement
+## Problem Statement
 How can we make it easier for foster kids to transition to new homes and for parents to communicate with kids and manage their behavior?
 
 
-##Solution
+## Solution
 
 HomeZone connects teens with their foster parents. 
 
@@ -24,28 +24,28 @@ Read notes from kids
 Track lists of rewards and consequences
 
 
-##Benefits for Foster Parents
+## Benefits for Foster Parents
 Easily communicate your house rules
 Learn about your foster kids without pulling teeth
 Implement a behavior system backed by child psychologists
 
-##Features for Foster Kids
+## Features for Foster Kids
 Create a HomeZone Profile
 Keep track of coins earned for good behavior
 Send private notes to foster parents
 Learn about foster home rules 
 
-##Benefits for Foster Kids
+## Benefits for Foster Kids
 No need to share basic information about yourself with new foster parents
 Get rewarded for good behavior
 Communicate with foster parents
 
-##Competitor Apps
+## Competitor Apps
 While there are apps for parents on the market not of them involve gamified behavior regulation or information exchange.
 
 The closest competitive app is Cozi Family Organizer which keeps to do lists, grocery lists,recipes and events.
 
-##Other apps:
+## Other apps:
 Foster Care to Success: an online portal for foster youth trying to navigate college
 Foster Club: an online community and resource guide for current and former foster youth
 iFoster: an online hub for foster families, foster care professionals and youth, which provides, among other things, a “Digital Locker” where foster youth can store all their vital records
@@ -55,7 +55,7 @@ Talkspace: will connect you with a licensed therapist
  Life360 is for the parent who is just trying to keep up with where their kids are at any given moment
 
 
-##Project Members and Roles
+## Project Members and Roles
 Eladio Montenegro: Client-side, Server-side Code, GIT Management, Authentication
 Lotus Lindez: Client-side, Server-side Code, UI/UX Design and Project Management
 Jennifer Ramos: Client-side, Server-side Code, Security and Code Standards/Maintenance
@@ -128,7 +128,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 ### Deployment
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
