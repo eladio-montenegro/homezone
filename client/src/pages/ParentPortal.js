@@ -147,6 +147,7 @@ class ParentPortal extends Component  {
       .then(myDude => {
    
         this.loadParent();
+        this.updateDeletedKid(value);
   
       })
       .catch(err => console.log(err));
@@ -154,13 +155,24 @@ class ParentPortal extends Component  {
       
   };
 
+  updateDeletedKid=(id)=>{
+
+    API.updateKidUser(id, {
+      currentfamily: 0,}
+      )
+      .then()
+  
+      .catch(err => console.log(err));
+
+  }
+
 
 
   handleChange = event => {
-    const {name, value} = event.target
+    const {name, value} = event.target;
     this.setState({
       [name]: value
-    })    
+    });    
 
    
   }
@@ -222,12 +234,12 @@ class ParentPortal extends Component  {
       <Row>
       <Col  size="col s12 l10 m9 offset-l2 offset-m4">
         <h1>{this.state.parentinfo.firstname}'s HomeZone</h1>
-        {/* <h3>Family Code: {this.state.parentinfo.code}</h3> */}
+        <h3>Family Code: {this.state.parentinfo.code}</h3>
         <h5>My Kids</h5>
-        <p>Add new kids here and give them your family code so they can connect with you.</p>
+        <p>Give your foster kids the family code so they can connect with you!</p>
     
         {listKids}
-        <SimpleModal 
+        {/* <SimpleModal 
 
     
           buttontext="+ Add New Kid"
@@ -251,7 +263,7 @@ class ParentPortal extends Component  {
 
             </div>
 
-        </SimpleModal>
+        </SimpleModal> */}
         
         <Col  size="col s12 m4">
         

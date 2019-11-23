@@ -75,10 +75,11 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
+      
       <div className={classes.toolbar} />
-      <Divider />
+      
       <List>
-
+      <a onClick={LogOut}><img class="" src="img/hey.png" style={{width:'80px',display: 'block',marginLeft:'auto',marginRight:'auto',marginBottom:'40px'}}></img></a>
       <a  href="/parentportal" ><ListItem button key="Dashboard"> <ListItemIcon> <DashboardIcon/> </ListItemIcon> <ListItemText style={{color:'black'}}>Dashboard</ListItemText> </ListItem> </a>
       <a  href="/editparentportal" > <ListItem button key="Profile"> <ListItemIcon> <AccountCircleIcon /> </ListItemIcon> <ListItemText style={{color:'black'}}>  My Profile</ListItemText> </ListItem> </a>
       </List>

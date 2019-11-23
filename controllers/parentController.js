@@ -15,6 +15,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  findByCode: function(req, res) {
+    db.ParentUser
+      .findOne({ code: req.params.code })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.ParentUser
       .create(req.body)
@@ -35,3 +42,5 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   }
 };
+
+

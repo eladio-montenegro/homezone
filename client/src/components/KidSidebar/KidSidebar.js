@@ -23,7 +23,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
 const drawerWidth = 240;
 
@@ -79,10 +79,11 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider/>
+      
       <List>
-
+     <a onClick={LogOut}><img class="" src="img/hey.png" style={{width:'80px',display: 'block',marginLeft:'auto',marginRight:'auto',marginBottom:'40px'}}></img></a>
      <a  href="/kidportal" > <ListItem button key="Dashboard"> <ListItemIcon> <DashboardIcon/> </ListItemIcon> <ListItemText style={{color:'black'}}>Goal Dashboard</ListItemText> </ListItem>  </a>
+     <a  href="/kidhomerules" > <ListItem button key="HomeRules"> <ListItemIcon> <ListAltIcon/> </ListItemIcon> <ListItemText style={{color:'black'}}>About Family</ListItemText> </ListItem>  </a>
      <a  href="/kidprofile" > <ListItem  button key="Profile"> <ListItemIcon> <AccountCircleIcon /> </ListItemIcon> <ListItemText style={{color:'black'}}>My Profile</ListItemText> </ListItem> </a>
      <a  href="/kidjournal" > <ListItem  button key="Journal"> <ListItemIcon> <LibraryBooksIcon /> </ListItemIcon> <ListItemText style={{color:'black'}}>Sharing Journal</ListItemText> </ListItem> </a>
      <a  href="/kidnotifications" > <ListItem  button key="Notifications">  <ListItemIcon> <NotificationsIcon/> </ListItemIcon > <ListItemText style={{color:'black'}}>Notifications</ListItemText> </ListItem> </a>

@@ -16,11 +16,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://homezone:password1019@ds139768.mlab.com:39768/heroku_zngb08j1"  );
+mongoose.connect(process.env.MONGODB_URI || "mongodb://homezone:password1019@ds139768.mlab.com:39768/heroku_zngb08j1" );
 
 
-//"mongodb://localhost/reactreadinglist"
-//"mongodb://homezone:password1019@ds139768.mlab.com:39768/heroku_zngb08j1"
+
+//"mongodb://homezone:password1019@ds139768.mlab.com:39768/heroku_zngb08j1"   "mongodb://localhost/reactreadinglist" 
 
 
 // Start the API server

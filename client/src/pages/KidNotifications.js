@@ -13,10 +13,9 @@ import CardHeader from "../components/Card/CardHeader.js";
 
 
 
-class KidHomes extends Component {
+class KidNotifications extends Component {
 
 
-    
     constructor(props) {
         super(props)
         this.state = {
@@ -41,18 +40,43 @@ class KidHomes extends Component {
             parentinfo: {},
             currentfamily:0,
             fosterfamilies:[],
-            allfosterfamilies:[]
+            allfosterfamilies:[].length,
+            journalentries:[],
+            journalentry: "",
+
+            notifications:[],
        
         }
     }
 
 
     handleChange = event => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         })
     }
+
+
+    addJournalEntry=()=> {
+
+        this.setState({
+            journalentries: [...this.state.journalentries,this.state.journalentry]
+        });
+
+
+     
+        API.updateKidUser(this.state.kidid, {
+            journalentries: [...this.state.journalentries,this.state.journalentry]}
+            )
+            .then(myDude => { console.log("updated");
+            })
+        
+            .catch(err => console.log(err));
+
+        
+    }
+
 
 
     getKid=()=> {
@@ -74,7 +98,7 @@ class KidHomes extends Component {
         
         API.getKid(switchid)
         .then(res => {
-            this.setState({ kidinfo: res.data, fosterfamilies:res.data.fosterfamilies,currentfamily:res.data.currentfamily, kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
+            this.setState({ kidinfo: res.data, notifications: res.data.notifications, journalentries: res.data.journalentries,fosterfamilies:res.data.fosterfamilies,currentfamily:res.data.currentfamily, kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
             
             this.getAllFamilyInfo();
 
@@ -136,30 +160,49 @@ class KidHomes extends Component {
         this.getKid();
 
        
-        
     
         
       };
 
 
+      deleteNotification=event=>{
 
+      
+        const {name, value} = event.target;
+        
+        const notifications =this.state.notifications.filter(note => note !== name);
 
+        API.updateKidUser(this.state.kidid, {
+          notifications: notifications,}
+          )
+          .then( dude=>{this.setState({notifications :this.state.notifications.filter(note => note !== name)})})
+      
+          .catch(err => console.log(err));
+    
+      }
+    
 
 
 
     render() {
 
-
-        let listHomes= this.state.allfosterfamilies.map((item, i) =>  
-        <Col  size="col s12 m4" key={i}>
+        let listNotifications= this.state.notifications.map((item, i) =>  
+        <Col  size="col s12 m12" key={i}>
           <Card>
-            <CardHeader color="info">
-              <h4>The {item.familyname} Family</h4>
-          
-            </CardHeader>
+
             <CardBody>
-              <p>{item.aboutfamily}</p>
-       
+            <h6>{item}</h6>
+
+
+            <button
+            style={{ float: 'right', backgroundColor:'white',border: 'none',borderColor:'white'}}
+            name={item}
+            onClick= {this.deleteNotification}
+            >
+            
+            OKAY
+          
+            </button>
 
             </CardBody>
           </Card> 
@@ -189,16 +232,29 @@ class KidHomes extends Component {
                 <div className="row">
                     <div className="col l12">
                         {/* Welcoming Message */}
-                        <h1>My Past Homes </h1>
+                        <h1>Notifications </h1>
                     </div>
                    
                 </div>
                 <div className="row">
-                    {listHomes}
-                   
+                    {/* Three Tabs */}
+                    <div className="col l10 s12">
+
+
+                  
+                                {/* Journal Tab Data */}
+                                
+                           <div>
+
+                              
+                           </div>
+                    </div>
                 </div>
 
-                
+                {listNotifications}
+                {/* Past Homes */}
+    
+
                 </Col>
                 </Row>
             </Container>
@@ -210,5 +266,5 @@ class KidHomes extends Component {
 
 
 
-export default KidHomes;
+export default KidNotifications;
 

@@ -223,18 +223,19 @@ function Step2(props) {
 
 
 
-        <label htmlFor="firstname">First Name</label>
+        <label htmlFor="firstname">Nick Name</label>
+        <p>This is the name this website will refer to you as. Never use your real name online!</p>
         <input
           className="form-control"
           id="firstname"
           name="firstname"
           type="text"
-          placeholder="Enter your legal first name"
+          placeholder="Enter a cool nickname"
           value={props.firstname}
           onChange={props.handleChange}
           />       
         
-        
+{/*         
         
         
         
@@ -249,7 +250,7 @@ function Step2(props) {
           value={props.nickname}
           onChange={props.handleChange}
           />
-          </div>
+          </div> */}
 
         <label htmlFor="pronouns">Pronouns</label>
         <input

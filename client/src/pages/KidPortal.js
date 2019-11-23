@@ -7,6 +7,14 @@ import CheckIcon from '@material-ui/icons/Check';
 import SimpleModal from "../components/SimpleModal";
 import Icon from '@material-ui/core/Icon';
 import KidSidebar from "../components/KidSidebar/KidSidebar.js";
+import AlbumIcon from '@material-ui/icons/Album';
+import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
+import ConfettiGenerator from "confetti-js";
+import { relative } from "path";
+
+import emailjs from 'emailjs-com';
+
+
 
 
 
@@ -27,12 +35,18 @@ class KidPortal extends Component {
             newgoal: "" ,
             newreward:"",
             newrewardcoins:"",
+            notifications:[],
            
             firstname: "",
             status: "",
             rewards: [],
             goals: [],
-            kidemail: "lotuslindez@gmail.com"
+            kidemail: "lotuslindez@gmail.com",
+
+            joinhome: "",
+            parentinfo: {},
+            currentfamily:0,
+            fosterfamilies:[]
        
         }
     }
@@ -48,15 +62,53 @@ class KidPortal extends Component {
 
     getKid=()=> {
 
+        var switchid;
+
+        if(this.state.kidid){
+
+            switchid=this.state.kidid;
+
+
+        }
+
+        else {
+
+            switchid=this.state.fromparentprofile;
+        }
+
         
-        API.getKid(this.state.fromparentprofile)
+        API.getKid(switchid)
         .then(res => {
-            this.setState({ kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
+            this.setState({ kidinfo: res.data, notifications: res.data.notifications,fosterfamilies:res.data.fosterfamilies,currentfamily:res.data.currentfamily, kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
             
-            this.renderGoal();
-            this.renderReward();
+         
+            
 
 
+        if(this.state.currentfamily===1 && this.state.kidid){
+
+            document.getElementById("nofamilyjoined").style.display = "none";
+            document.getElementById("coinsection").style.display = "block";
+            
+
+        }
+
+        else if (this.state.fromparentprofile){
+
+            document.getElementById("nofamilyjoined").style.display = "none";
+            document.getElementById("coinsection").style.display = "block";
+            
+
+        }
+
+        else{
+
+            
+            document.getElementById("nofamilyjoined").style.display = "block";
+            document.getElementById("coinsection").style.display = "none";
+
+
+        }
             
         if(this.state.goals.length >=1  && !this.state.kidid) {
 
@@ -94,58 +146,8 @@ class KidPortal extends Component {
 
     
 
-    renderGoal = () => {
-        var table = document.getElementById("goalTable");
-        this.state.goals.forEach( (goal,i) => { 
-
-        var row = table.insertRow(i+1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-
-        cell1.innerHTML = goal.goal;
-        cell2.innerHTML = goal.coins;
-
-        if (this.state.kidid){
-
-            cell3.innerHTML = goal.status;
-        }
-        else {
-        cell3.innerHTML = "<a goal='"+ goal.goal+ "' coins='"+goal.coins+"' onClick='this.finishedGoal()'> Earned </a>";
-             }
-        });
-    }
 
     
-    renderReward = event => {
-        var table = document.getElementById("rewardTable");
-        this.state.rewards.forEach( (reward,i) => { 
-
-        var row = table.insertRow(i+1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-
-        cell1.innerHTML = reward.reward;
-        cell2.innerHTML = reward.coins;
-
-        if (this.state.kidid && this.state.coinCount>= reward.coins){
-
-            cell3.innerHTML = "<a reward='"+ reward.reward+ "' coins='"+reward.coins+"' onClick='this.requestItem()'> Request Reward </a>";
-        }
-
-        else if (this.state.kidid){
-            cell3.innerHTML = "Not Enough Coins";
-
-        }
-
-
-        else {
-        cell3.innerHTML = "<a reward='"+ reward.reward+ "' coins='"+reward.coins+"' onClick='this.earnItem()'> Used </a>";
-         }
-
-        });
-    }
 
     addGoal = event => {
         var table = document.getElementById("goalTable");
@@ -156,7 +158,7 @@ class KidPortal extends Component {
 
         cell1.innerHTML = this.state.newgoal;
         cell2.innerHTML = this.state.newcoins;
-        cell3.innerHTML = "<a goal='"+ this.state.newgoal+ "' coins='"+this.state.newcoins+"' onClick='this.finishedGoal()'> Earned </a>";
+        cell3.innerHTML = "<a goal='"+ this.state.newgoal+ "' coins='"+this.state.newcoins+"' onClick='this.finishedGoal()'> Complete </a>";
              
 
          let newentry= [...this.state.goals,{ 
@@ -170,14 +172,114 @@ class KidPortal extends Component {
 
                 document.getElementById("parentgoalemptystate").style.display = "none";
                 document.getElementById("goalemptystate").style.display = "none";
-             ;
+             
     
             
+             API.updateKidUser(this.state.fromparentprofile, {
+                notifications: [...this.state.notifications,"A new goal has been added to your goal dashboard: "+this.state.newgoal]}
+                )
+                .then(myDude => { this.sendEmail("A new goal has been added to your goal dashboard: "+this.state.newgoal); 
+                })
+            
+                .catch(err => console.log(err));  
+                
+    }
+
+    sendEmail =(mess)=> {
+        console.log("sending");
+
+        // this.state.fromparentprofile.email
+        //this.state.fromparentprofile.username
 
 
+        var templateParams = {
+            "email": "lotuslindez@gmail.com",
+            "username": "poop",
+            "message": "hi"
+        };
+         
+        var service_id = "gmail";
+        var template_id = "template_GJKpY6Qr";
+ 
+
+        emailjs.send(service_id ,template_id, templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                window.location.reload();
                
-       
-     
+            }, function(error) {
+               console.log('FAILED...', error);
+               window.location.reload();
+            });
+
+
+
+    }
+
+    finishedGoal = event =>{
+
+        const {name} = event.target;
+        const comegoals =this.state.goals.filter(goal => goal.coins !== name);
+
+    
+    
+        this.setState({coinCount: (parseInt(this.state.coinCount)+parseInt(name))});
+        this.setState({goals:comegoals});
+
+        API.updateKidUser(this.state.fromparentprofile, {
+             coinCount: (parseInt(this.state.coinCount)+parseInt(name)),
+            goals:comegoals,
+            notifications: [...this.state.notifications,"You have completed a goal for "+name+"coins"]}
+            )
+            .then(myDude => { console.log("updated");
+            })
+        
+            .catch(err => console.log(err));  
+
+    }
+
+
+    buyReward = event =>{
+
+        const {name} = event.target;
+
+
+        if(name<=this.state.coinCount) {
+        const comerewards =this.state.rewards.filter(reward => reward.coins !== name);
+        console.log(comerewards);
+
+
+        this.setState({coinCount: (parseInt(this.state.coinCount)-parseInt(name))});
+        this.setState({rewards:comerewards});
+
+
+        API.updateKidUser(this.state.fromparentprofile, {
+            coinCount: (parseInt(this.state.coinCount)-parseInt(name)),
+            rewards:this.state.rewards.filter(reward => reward.coins !== name) ,
+            notifications: [...this.state.notifications,"You recently bought a reward for "+name+" coins!"]},
+            )
+            .then(myDude => { alert("updated");
+            })
+        
+            .catch(err => console.log(err));  
+
+        }
+
+        else {
+
+            alert ("You don't have enough coins for this reward. Try completing more goals or ask your foster parent for more oppurtunities.");
+        }
+
+        
+        var confettiSettings = { target: 'my-canvas' };
+        var confetti = new ConfettiGenerator(confettiSettings);
+        confetti.render(); 
+        window.scrollBy(0, 300);
+        setTimeout( function(){confetti.clear()},3000);
+        setTimeout( function(){window.scrollBy(0, -400);},3000);
+        
+        
+
     }
 
 
@@ -218,6 +320,15 @@ class KidPortal extends Component {
            
          document.getElementById("parentrewardemptystate").style.display = "none";
          document.getElementById("rewardemptystate").style.display = "none"; 
+
+
+         API.updateKidUser(this.state.fromparentprofile, {
+            notifications: [...this.state.notifications,"A new reward to earn has been added to your goal dashboard: "+this.state.newreward]}
+            )
+            .then(myDude => {  window.location.reload();
+            })
+        
+            .catch(err => console.log(err));
      
     }
 
@@ -239,7 +350,7 @@ class KidPortal extends Component {
 
         
         this.determineEntry();
-        this.renderGoal();
+      
         
         
  
@@ -253,6 +364,10 @@ class KidPortal extends Component {
         document.getElementById("back").style.display = "none";
         document.getElementById("parentgoalemptystate").style.display = "none";
         document.getElementById("parentrewardemptystate").style.display = "none";
+        
+
+
+
 
         if(this.state.goals.length >1) {
 
@@ -318,9 +433,118 @@ class KidPortal extends Component {
       }
 
 
+      addFamily=()=> {
+
+        API.getParentbyCode(this.state.joinhome)
+        .then(  res => {
+  
+            this.setState({parentinfo:res.data});
+            this.updateParent();
+        }) 
+        .catch(err => console.log(err));
+
+      }
+
+
+      updateParent=()=> {
+
+
+        API.updateParentUser(this.state.parentinfo._id, {
+            fosterkids: [...this.state.parentinfo.fosterkids, this.state.kidinfo._id]}
+            )
+            .then(myDude => {
+         
+              console.log([...this.state.parentinfo.fosterkids, this.state.kidinfo._id]);
+              document.getElementById("nofamilyjoined").style.display = "none";
+              document.getElementById("coinsection").style.display = "block";
+              this.setState({currentfamily:1});
+              this.updateCurrentFamily();
+        
+            })
+            .catch(err => console.log(err));
+      }
+
+      updateCurrentFamily =(newentry)=> {
+
+    
+        API.updateKidUser(this.state.kidid, {
+            currentfamily: this.state.currentfamily,
+            fosterfamilies:[...this.state.fosterfamilies,this.state.parentinfo._id]}
+            )
+            .then(dude=> {window.location.href = "/kidhomerules";})
+        
+            .catch(err => console.log(err));
+   
+    }
+
+
     render() {
 
+        let listGoals;
+        let listRewards;
+
+        if(this.state.fromparentprofile) {
         
+       listGoals= this.state.goals.map((item, i) =>  
+
+        <tr> 
+                <td>{item.goal}</td> 
+                <td>{item.coins} </td> 
+
+                    
+                    <td> <a className="completebutton"
+                            name={item.coins} 
+                            value={i} 
+                            onClick={this.finishedGoal}> Complete </a> 
+                            
+                    </td>  
+
+        </tr>
+        
+      );
+
+        }
+
+        else{
+
+           listGoals= this.state.goals.map((item, i) =>  
+
+        <tr> 
+                <td>{item.goal}</td> 
+                <td>{item.coins} </td> 
+
+                    
+                <td>not done</td>
+
+        </tr>
+
+          
+
+        
+            );}
+
+        
+
+      
+
+    if(this.state.fromparentprofile) {
+        
+        listRewards= this.state.rewards.map((item, i) =>  
+
+        <tr> <td> {item.reward}</td> <td>{item.coins} </td> <td> Not Bought </td> </tr>
+        
+      );
+ 
+         }
+ 
+         else{
+             
+            listRewards= this.state.rewards.map((item, i) =>  
+
+            <tr> <td> {item.reward}</td> <td>{item.coins} </td> <td> <a className="buybutton" name={item.coins}  coins={item.coins} onClick={this.buyReward}> Buy </a> </td> </tr>
+            
+          );}
+
 
 
    
@@ -345,10 +569,49 @@ class KidPortal extends Component {
                 </div>
 
 
-                <div className="row">
+                <div id="nofamilyjoined">
+                <Row>
+                    <h1>You are currently not part of a foster family! Click on the button below when you are ready. </h1>
+                    <SimpleModal 
+
+    
+                                    buttontext="+ Join a Family"
+                                    modaltitle="Join a Family">
+                                    <p>Add a 4 digit code to join a family. Ask your foster parent for the code. </p> 
+                                    <div>
+                                            <div className="form-group">
+                                            <p>Code</p>
+
+                                            <input
+                                            className="form-control"
+                                            id="joinhome"
+                                            name="joinhome"
+                                            type="text"
+                                            placeholder="Enter goal"
+                                            onChange={this.handleChange}
+                                            />
+                                        
+
+                                            <Button color="primary" type="button" onClick={this.addFamily}> Join Home</Button>   
+                                            </div>
+                                            
+
+                                    </div>
+                                    
+                        </SimpleModal>
+                
+                </Row>
+
+
+
+                </div>
+               
+                <div id="coinsection">
+                <div className="row"  >
                     <div className="col l12">
                         {/* Welcoming Message */}
-                        <h1>{this.state.firstname}'s Goal Dashboard </h1>
+                        <h1>{this.state.kidinfo.firstname}'s Goal Dashboard </h1>
+                        
                     </div>
                    
                 </div>
@@ -359,8 +622,7 @@ class KidPortal extends Component {
 
                   
 
-                           
-
+                     
                         <Tabs className="tab-demo">
                             {/* My Goals Tab */}
                             <Tab title="My Goals" href="#myGoalsTab" className="col l12" active>
@@ -378,7 +640,7 @@ class KidPortal extends Component {
                                         <div className="col l12 s12">
                                             <div className="coinBox">
                                                 <p>You have</p>
-                                                <h4 className="coinCount">{this.state.coinCount} O</h4>
+                                                <h4 className="coinCount">{this.state.coinCount} <OfflineBoltIcon/></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -406,6 +668,8 @@ class KidPortal extends Component {
 
                                         <tbody>
 
+                                            {listGoals}
+
                         
                                         </tbody>
                                     </table>
@@ -421,7 +685,8 @@ class KidPortal extends Component {
 
                                      </div>                                 
                                     <div id="theaddgoalbutton">
-                                            <SimpleModal 
+                                
+                                <SimpleModal 
 
     
                                     buttontext="+ Add a Goal"
@@ -485,7 +750,7 @@ class KidPortal extends Component {
                                         </thead>
 
                                         <tbody>
-                                        
+                                        {listRewards}
                                        
                                         </tbody>
                                     </table>
@@ -658,8 +923,18 @@ class KidPortal extends Component {
                             {/* Journal Tab */}
 
                         </Tabs>
+                        <canvas id="my-canvas" >
+
+                            <h1>Congrats! You did it! Keep accomplishing your goals!</h1>
+
+
+
+                        </canvas>
                     </div>
                 </div>
+
+                </div>
+                
          
 
                 </Col>

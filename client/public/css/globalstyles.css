@@ -21,6 +21,15 @@ h2 {
     margin-bottom: 1px;
     }
 
+    .paratitle {
+        color: rgb(96, 8, 168) !important;
+        font-family: 'Work Sans',arial sans-serif !important;
+        font-size: 20px !important;
+        margin-top: 20px;
+        margin-bottom: 1px;
+        }
+    
+
 h3 {
     color: #252525 !important;
     font-family: 'Work Sans',arial sans-serif !important;
@@ -80,7 +89,7 @@ li{
   .tabs .tab a:hover, .tabs .tab a.active {
 
     color:#7432aa !important;
-    background-color:grey !important;
+    background-color:rgb(243, 243, 243) !important;
   }
 
   .tabs .tab a {
@@ -94,6 +103,12 @@ li{
   .tabs .tab a:focus, .tabs .tab a.active:focus {
   
     color:#a36ece !important;
-    background-color:grey;
+    background-color:rgb(243, 243, 243) !important;
   }
 
+
+  .tabs .indicator {
+
+    background-color:#7432aa !important;
+
+  }

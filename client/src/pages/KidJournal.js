@@ -7,6 +7,9 @@ import CheckIcon from '@material-ui/icons/Check';
 import SimpleModal from "../components/SimpleModal";
 import Icon from '@material-ui/core/Icon';
 import KidSidebar from "../components/KidSidebar/KidSidebar.js";
+import Card from "../components/Card/Card.js";
+import CardBody from "../components/Card/CardBody.js";
+import CardHeader from "../components/Card/CardHeader.js";
 
 
 
@@ -28,33 +31,78 @@ class KidJournal extends Component {
             newreward:"",
             newrewardcoins:"",
            
-            nickname: "",
+            firstname: "",
             status: "",
             rewards: [],
             goals: [],
-            kidemail: "lotuslindez@gmail.com"
+            kidemail: "lotuslindez@gmail.com",
+
+            joinhome: "",
+            parentinfo: {},
+            currentfamily:0,
+            fosterfamilies:[],
+            allfosterfamilies:[].length,
+            journalentries:[],
+            journalentry: "",
        
         }
     }
 
 
     handleChange = event => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         })
     }
 
 
-    getKid=()=> {
+    addJournalEntry=()=> {
+
+        this.setState({
+            journalentries: [...this.state.journalentries,this.state.journalentry]
+        });
+
+
+     
+        API.updateKidUser(this.state.kidid, {
+            journalentries: [...this.state.journalentries,this.state.journalentry]}
+            )
+            .then(myDude => { console.log("updated");
+            })
+        
+            .catch(err => console.log(err));
 
         
-        API.getKid(this.state.fromparentprofile)
+    }
+
+
+
+    getKid=()=> {
+
+        var switchid;
+
+        if(this.state.kidid){
+
+            switchid=this.state.kidid;
+
+
+        }
+
+        else {
+
+            switchid=this.state.fromparentprofile;
+        }
+
+        
+        API.getKid(switchid)
         .then(res => {
-            this.setState({ kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, nickname: res.data.firstname });
+            this.setState({ kidinfo: res.data, journalentries: res.data.journalentries,fosterfamilies:res.data.fosterfamilies,currentfamily:res.data.currentfamily, kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
             
-            this.renderGoal();
-            this.renderReward();
+            this.getAllFamilyInfo();
+
+
+
         
         })
         .catch(err => console.log(err));
@@ -62,85 +110,33 @@ class KidJournal extends Component {
 
     }
 
-    
+    getAllFamilyInfo=()=> {
 
-    renderGoal = () => {
-        var table = document.getElementById("goalTable");
-        this.state.goals.forEach( (goal,i) => { 
-
-        var row = table.insertRow(i+1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-
-        cell1.innerHTML = goal.goal;
-        cell2.innerHTML = goal.coins;
-
-        if (this.state.kidid){
-
-            cell3.innerHTML = goal.status;
-        }
-        else {
-        cell3.innerHTML = "<a goal='"+ goal.goal+ "' coins='"+goal.coins+"' onClick='this.finishedGoal()'> Earned </a>";
-             }
-        });
-    }
-
-    
-    renderReward = event => {
-        var table = document.getElementById("rewardTable");
-        this.state.rewards.forEach( (reward,i) => { 
-
-        var row = table.insertRow(i+1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-
-        cell1.innerHTML = reward.reward;
-        cell2.innerHTML = reward.coins;
-
-        if (this.state.kidid && this.state.coinCount>= reward.coins){
-
-            cell3.innerHTML = "<a reward='"+ reward.reward+ "' coins='"+reward.coins+"' onClick='this.requestItem()'> Request Reward </a>";
-        }
-
-        else if (this.state.kidid){
-            cell3.innerHTML = "Not Enough Coins";
-
-        }
-
-
-        else {
-        cell3.innerHTML = "<a reward='"+ reward.reward+ "' coins='"+reward.coins+"' onClick='this.earnItem()'> Used </a>";
-         }
-
-        });
-    }
-
-    addGoal = event => {
-        var table = document.getElementById("goalTable");
-        var row = table.insertRow();
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-
-        cell1.innerHTML = this.state.newgoal;
-        cell2.innerHTML = this.state.newcoins;
-        cell3.innerHTML = "<a goal='"+ this.state.newgoal+ "' coins='"+this.state.newcoins+"' onClick='this.finishedGoal()'> Earned </a>";
-             
-
-         let newentry= [...this.state.goals,{ 
-            goal:this.state.newgoal,
-            coins:this.state.newcoins, 
-            status:"incomplete"}];
-
+        var families=this.state.fosterfamilies;
         
-         this.getKids(newentry);
-               
-       
-     
-    }
 
+
+
+
+        for(var i=0;i<families.length;i++){
+
+        API.getParent(families[i])
+        .then(  res => {
+  
+            this.setState({allfosterfamilies: [...this.state.allfosterfamilies,res.data]});
+            
+            
+        }) 
+        .catch(err => console.log(err));
+
+    }
+        
+
+
+      }
+
+
+    
 
     getKids =(newentry)=> {
 
@@ -156,112 +152,33 @@ class KidJournal extends Component {
     }
 
     
-    addReward = event => {
-        var table = document.getElementById("rewardTable");
-        var row = table.insertRow(1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-       
-
-        cell1.innerHTML = this.state.newreward;
-        cell2.innerHTML = this.state.newrewardcoins;
-        cell3.innerHTML = "<a reward='"+ this.state.newreward+ "' coins='"+this.state.newrewardcoinss+"' onClick='this.earnItem()'> Used </a>";
-    
-
-         let newrewardentry= [...this.state.rewards,{ 
-            reward:this.state.newreward,
-            coins:this.state.newrewardcoins, 
-            }];
-
-        
-         this.getKidRewards(newrewardentry);
-         console.log (newrewardentry);    
-     
-    }
-
-    getKidRewards =(newentry)=> {
-
-    
-        API.updateKidUser(this.state.fromparentprofile, {
-            rewards: newentry}
-            )
-            .then(myDude => { console.log("updated");
-            })
-        
-            .catch(err => console.log(err));
-   
-    }
-
 
     componentDidMount() {
 
         
-        this.determineEntry();
-        this.renderGoal();
-        
-        
- 
-        
-      };
-
-      hideFromKid=()=> {
-
-
-        document.getElementById("back").style.display = "none";
-
-
-
-
-      }
-
-      hideFromParent=()=> {
-
-        document.getElementById("kidsidebar").style.display = "none";
-
-        
-    }
-
-      //checks to see if we are entering from parent portal or from a kid login
-      determineEntry=()=> {
-
-        if (this.state.kidid){
-
-            this.setState({entry:this.state.kidid});
-            this.hideFromKid();
-            
-          
-        }
-
-        else if (this.state.fromparentprofile) {
-
-            this.setState({entry:this.state.fromparentprofile});
-           
-           
-            this.hideFromParent();
-            
-
-        }
-
-        else {
-            //if neither then we need to redirect to the login page
-            this.setState({nologin:1});
-            window.location.href = "/login";
-
-        }
-
-
-
-
-
         this.getKid();
 
        
-      }
+    
+        
+      };
+
 
 
     render() {
 
+        let listJournal= this.state.journalentries.map((item, i) =>  
+        <Col  size="col s12 m12 l12" key={i}>
+          <Card>
+
+            <CardBody>
+            <h6>{item}</h6>
+       
+
+            </CardBody>
+          </Card> 
+        </Col>
+      );
         
 
 
@@ -282,15 +199,11 @@ class KidJournal extends Component {
                 <Row>
                 <Col  size="col s12 l10 m9 offset-l2 offset-m4">
 
-                <div id="back">
-                <a href="/parentportal"> <h6>Back to My Portal</h6> </a>   
-                </div>
-
 
                 <div className="row">
                     <div className="col l12">
                         {/* Welcoming Message */}
-                        <h1>{this.state.nickname}'s Journal </h1>
+                        <h1>My Journal </h1>
                     </div>
                    
                 </div>
@@ -313,20 +226,25 @@ class KidJournal extends Component {
                                             <div className="input-field col s8">
                                                 {/* Text Area */}
                                     
-                                                <textarea id="textarea1" className="materialize-textarea"></textarea>
+                                                <textarea id="textarea1" className="materialize-textarea" name="journalentry" onChange={this.handleChange}></textarea>
                                                 
                                             </div>
 
-                                            <Button color="primary" type="button" onClick={this.addJournalEntry}> Submit</Button>   
+                                            <Button color="primary" type="button" onClick={this.addJournalEntry}> SEND</Button>   
                                         </div>
                                         {/* Submit Button */}
                                        
                                         
                                     </div>
                                 </div>
-                           
+                           <div>
+
+                              
+                           </div>
                     </div>
                 </div>
+
+                {listJournal}
                 {/* Past Homes */}
     
 
