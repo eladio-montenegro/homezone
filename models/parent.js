@@ -10,9 +10,12 @@ const parentSchema = new Schema({
   password: String,
   phone: String,
   email: String,
+  aboutfamily: String,
+  aboutyou: String,
   welcome: String,
   rules: String,
   code: String,
+  notifications: Array,
   fosterkids: [{
     type: Schema.Types.ObjectId, 
     ref: 'KidUser', 

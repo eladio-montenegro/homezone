@@ -7,13 +7,10 @@ import CheckIcon from '@material-ui/icons/Check';
 import SimpleModal from "../components/SimpleModal";
 import Icon from '@material-ui/core/Icon';
 import KidSidebar from "../components/KidSidebar/KidSidebar.js";
-import Card from "../components/Card/Card.js";
-import CardBody from "../components/Card/CardBody.js";
-import CardHeader from "../components/Card/CardHeader.js";
 
 
 
-class KidHomes extends Component {
+class KidHomeRules extends Component {
 
 
     
@@ -40,8 +37,7 @@ class KidHomes extends Component {
             joinhome: "",
             parentinfo: {},
             currentfamily:0,
-            fosterfamilies:[],
-            allfosterfamilies:[]
+            fosterfamilies:[]
        
         }
     }
@@ -75,45 +71,36 @@ class KidHomes extends Component {
         API.getKid(switchid)
         .then(res => {
             this.setState({ kidinfo: res.data, fosterfamilies:res.data.fosterfamilies,currentfamily:res.data.currentfamily, kidemail: res.data.email, rewards: res.data.rewards, goals: res.data.goals, coinCount: res.data.coinCount, firstname: res.data.firstname });
-            
-            this.getAllFamilyInfo();
-
-
-
-        
+            this.getParentInfo();
         })
         .catch(err => console.log(err));
 
 
-    }
-
-    getAllFamilyInfo=()=> {
-
-        var families=this.state.fosterfamilies;
-        
-
-
-
-
-        for(var i=0;i<families.length;i++){
-
-        API.getParent(families[i])
-        .then(  res => {
-  
-            this.setState({allfosterfamilies: [...this.state.allfosterfamilies,res.data]});
-            
-            
-        }) 
-        .catch(err => console.log(err));
 
     }
+
+
+
+    getParentInfo=()=> {
+
+
+
+        API.getParent(this.state.kidinfo.fosterfamilies[this.state.kidinfo.fosterfamilies.length-1])
+      .then(  res => {
+
+          this.setState({parentinfo:res.data});
+          
         
+      }) 
+      .catch(err => console.log(err));
 
 
-      }
 
 
-    
+    }
+
+
+
 
     getKids =(newentry)=> {
 
@@ -135,36 +122,59 @@ class KidHomes extends Component {
         
         this.getKid();
 
-       
         
-    
+        
+ 
         
       };
 
 
 
+      addFamily=()=> {
+
+        API.getParentbyCode(this.state.joinhome)
+        .then(  res => {
+  
+            this.setState({parentinfo:res.data});
+            this.updateParent();
+        }) 
+        .catch(err => console.log(err));
+
+      }
 
 
+      updateParent=()=> {
+
+
+        API.updateParentUser(this.state.parentinfo._id, {
+            fosterkids: [...this.state.parentinfo.fosterkids, this.state.kidinfo._id]}
+            )
+            .then(myDude => {
+         
+              console.log([...this.state.parentinfo.fosterkids, this.state.kidinfo._id]);
+              this.setState({currentfamily:1});
+              this.updateCurrentFamily();
+        
+            })
+            .catch(err => console.log(err));
+      }
+
+      updateCurrentFamily =(newentry)=> {
+
+    
+        API.updateKidUser(this.state.kidid, {
+            currentfamily: this.state.currentfamily,
+            fosterfamilies:[...this.state.fosterfamilies,this.state.parentinfo_id]}
+            )
+            .then()
+        
+            .catch(err => console.log(err));
+   
+    }
 
 
     render() {
 
-
-        let listHomes= this.state.allfosterfamilies.map((item, i) =>  
-        <Col  size="col s12 m4" key={i}>
-          <Card>
-            <CardHeader color="info">
-              <h4>The {item.familyname} Family</h4>
-          
-            </CardHeader>
-            <CardBody>
-              <p>{item.aboutfamily}</p>
-       
-
-            </CardBody>
-          </Card> 
-        </Col>
-      );
         
 
 
@@ -186,19 +196,33 @@ class KidHomes extends Component {
                 <Col  size="col s12 l10 m9 offset-l2 offset-m4">
 
 
-                <div className="row">
-                    <div className="col l12">
-                        {/* Welcoming Message */}
-                        <h1>My Past Homes </h1>
-                    </div>
-                   
-                </div>
-                <div className="row">
-                    {listHomes}
-                   
+
+
+                <div id="nofamilyjoined">
+                <Row>
+                    <h1>Welcome to the {this.state.parentinfo.familyname} family!</h1>
+
+                    <h2 className="paratitle">A message from your new home:</h2>
+                    <p>{this.state.parentinfo.welcome}</p>
+                    <br></br>
+                    <h2 className="paratitle">About your foster parent</h2>
+                    <p>Parent Name: {this.state.parentinfo.firstname}</p>       
+                    <p>Parent Occupation: {this.state.parentinfo.occupation}</p>
+                    <p>{this.state.parentinfo.aboutyou}</p>    
+                        <br></br>
+                    <h2 className="paratitle">About your foster family</h2>
+                    <p>{this.state.parentinfo.aboutfamily}</p>   
+
+                    <br></br>
+                    <h2 className="paratitle">House Rules</h2>
+                    <p>{this.state.parentinfo.rules}</p>      
+                </Row>
+
+
+
                 </div>
 
-                
+
                 </Col>
                 </Row>
             </Container>
@@ -210,5 +234,5 @@ class KidHomes extends Component {
 
 
 
-export default KidHomes;
+export default KidHomeRules;
 

@@ -9,6 +9,9 @@ export default {
   getParent: function(id) {
     return axios.get("/api/parents/" + id);
   },
+  getParentbyCode: function(code) {
+    return axios.get("/api/parents/code/" + code);
+  },
 
   saveParentUser: function(parentData) {
     return axios.post("/api/parents", parentData);

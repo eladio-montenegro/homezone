@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { CheckList,CheckListItem } from "../components/Checklist";
-
+import KidSidebar from "../components/KidSidebar/KidSidebar.js";
 import Footer from "../components/Footer";
 import ParentView from "../components/ParentView";
 
@@ -90,7 +90,8 @@ class KidPortalEdit extends Component  {
     API.updateKidUser(this.state.kidid, {
       firstname:  this.state.firstname,
       hobbies:this.state.hobbies,
-      dislikes:this.state.dislikes,
+      likes:this.state.likes,
+      allergies:this.state.allergies,
       pronouns:this.state.pronouns,
       allergies:this.state.allergies,
       foodrestrictions: this.state.foodrestrictions,
@@ -128,20 +129,6 @@ class KidPortalEdit extends Component  {
   
   render() {
 
-    let listKids= this.state.fosterkids.map((item, i) =>  
-
-    
-    <Col  size="col s12 m4" key={i}>
-     
-    <Card>
-
-        </Card> 
-        </Col>
-
-    
-
-    );
-    
 
 
 
@@ -150,48 +137,27 @@ class KidPortalEdit extends Component  {
      
       <div>
 
-         <Sidebar></Sidebar>
+<KidSidebar></KidSidebar>
  
       <Container>
-{/* 
-        <Sidebar
-           routes={appRoutes}
-           logoText={"HomeZone"}
-           logo={logo}
-           image={image}
-           color="blue"
-          
-           /> */}
+
 
       <Row>
 
       <Col  size="col s12 l10 m9 offset-l2 offset-m4">
-        <h1>{this.state.parentinfo.firstname}'s HomeZone</h1>
+        <h1>{this.state.kidinfo.firstname}'s Profile</h1>
         
       <div className="form-group">
       <h4>General Account Information</h4>
-      <p>Your kids have access to your profile so make sure the information is up to date!</p>
-      <label htmlFor="firstname">First Name</label>
+      <p>Keep your profile up to date for your foster family to see.</p>
+      <label htmlFor="firstname">Nick Name</label>
       <input
         className="form-control"
         id="firstname"
         name="firstname"
         type="text"
-        placeholder="Enter your first name"
-        value={this.state.firstname || ''}
-        onChange={this.handleChange}
-        />
-        </div>
-
-      <div className="form-group">
-      <label htmlFor="familyname">Family Name</label>
-      <input
-        className="form-control"
-        id="familyname"
-        name="familyname"
-        type="text"
-        placeholder="Enter Family Name"
-        value={this.state.familyname || ''}
+        placeholder="Your nickname"
+        value={this.state.kidinfo.firstname || ''}
         onChange={this.handleChange}
         />
         </div>
@@ -205,7 +171,7 @@ class KidPortalEdit extends Component  {
         name="username"
         type="text"
         placeholder="Enter username"
-        value={this.state.username || ''}
+        value={this.state.kidinfo.username || ''}
         onChange={this.handleChange}
         />
 </div>
@@ -219,7 +185,7 @@ class KidPortalEdit extends Component  {
         name="password"
         type="password"
         placeholder="Enter password"
-        value={this.state.password || ''}
+        value={this.state.kidinfo.password || ''}
         onChange={this.handleChange}
         />      
       </div>
@@ -232,7 +198,7 @@ class KidPortalEdit extends Component  {
         name="email"
         type="text"
         placeholder="Enter email"
-        value={this.state.email || ''}
+        value={this.state.kidinfo.email || ''}
         onChange={this.handleChange}
         />      
       </div>
@@ -245,57 +211,69 @@ class KidPortalEdit extends Component  {
         name="phone"
         type="text"
         placeholder="Enter phone"
-        value={this.state.phone || ''}
+        value={this.state.kidinfo.phone || ''}
         onChange={this.handleChange}
         />      
       </div>
-
-
-
-      <h4>Home Profile</h4>
-
+      
+      <h4>About Me</h4>
 
       <div className="form-group">
-      <label htmlFor="occupation">Your Occupation</label>
+      <label htmlFor="bio">My Bio</label>
       <input
         className="form-control"
-        id="occupation"
-        name="occupation"
+        id="bio"
+        name="bio"
         type="text"
-        placeholder="Example: Teacher, Mailperson, Astronaut"
-        value={this.state.occupation || ''}
-        onChange={this.handleChange}
-        />
-      </div>
-
-
-
-
-      <div className="form-group">
-      <label htmlFor="welcome">Home Welcome Message</label>
-      <textarea
-        className="form-control materialize-textarea"
-        id="welcome"
-        name="welcome"
-        type="text"
-        placeholder="Your Welcome message"
-        value={this.state.welcome || ''}
+        placeholder="Enter allergies"
+        value={this.state.kidinfo.bio || ''}
         onChange={this.handleChange}
         />      
       </div>
 
       <div className="form-group">
-      <label htmlFor="rules">House Rules</label>
-      <textarea
-        className="form-control materialize-textarea"
-        id="rules"
-        name="rules"
+      <label htmlFor="likes">Likes</label>
+      <input
+        className="form-control"
+        id="likes"
+        name="likes"
         type="text"
-        placeholder="Your Welcome message"
-        value={this.state.rules  || ''}
+        placeholder="Enter things you like"
+        value={this.state.kidinfo.likes || ''}
         onChange={this.handleChange}
         />      
       </div>
+
+
+
+      <div className="form-group">
+      <label htmlFor="hobbies">Hobbies</label>
+      <input
+        className="form-control"
+        id="hobbies"
+        name="hobbies"
+        type="text"
+        placeholder="Enter things you like"
+        value={this.state.kidinfo.hobbies || ''}
+        onChange={this.handleChange}
+        />      
+      </div>
+
+
+      <div className="form-group">
+      <label htmlFor="allergies">Allergies</label>
+      <input
+        className="form-control"
+        id="allergies"
+        name="allergies"
+        type="text"
+        placeholder="Enter allergies"
+        value={this.state.kidinfo.allergies || ''}
+        onChange={this.handleChange}
+        />      
+      </div>
+
+
 
       
       <div style={{marginTop:"30px"}} >

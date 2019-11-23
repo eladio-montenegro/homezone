@@ -9,6 +9,7 @@ const kidSchema = new Schema({
     username: String,
     password: String,
     lastname: String,
+    email:String,
     age: Number, 
     bio: String,
     hobbies: String,
@@ -19,6 +20,7 @@ const kidSchema = new Schema({
     profilelink:String,
 
     journalentries: Array,
+    notifications: Array,
     freenote: String,
 
     currentfamily: Number,

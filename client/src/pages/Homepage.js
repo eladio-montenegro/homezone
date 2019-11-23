@@ -20,6 +20,7 @@ class Homepage extends Component {
             <Col size="s12" offset="offset-s3">
 
               <Jumbotron title="HomeZone" subtitle="Connect with your foster family!" jumboicon="\img\home1-svg.png">
+              
               </Jumbotron>
 
             </Col>

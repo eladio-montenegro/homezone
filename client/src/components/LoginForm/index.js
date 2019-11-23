@@ -74,13 +74,14 @@ class LoginForm extends React.Component {
 
 kidLogin =()=> {
 
+
   API.getKids()
   .then(  res => {
 
-     console.log ("all the kids"+ res.data);
+    
  
      let kidArray = res.data;
-
+     
      var j;
      for (j = 0; j < kidArray.length; j++) {
        if(kidArray[j].username === this.state.username ){
@@ -90,18 +91,22 @@ kidLogin =()=> {
          localStorage.setItem("kidid", kidArray[j]._id);
             
             window.location.href = "/KidPortal";
-
+          
+          break;
        }
-       else{
-}
-      
-      }
 
-        });
-
+       else if(j===kidArray.length-1){
 
         alert("Opps! Couldn't find your username or password. Try again!");
         window.location.href = "/login";
+       }
+   
+      }
+
+        });
+        
+     
+  
 }
   
 
@@ -112,7 +117,7 @@ kidLogin =()=> {
         <Container>
           <Row>
             <Col size="col s12 l10 m9 offset-l2 offset-m2 offset-s1">
-        <h1>Login to Your HomeZone!</h1>
+        <h1>Log into Your HomeZone!</h1>
         <p>Never share your password with anyone.</p>
         <div className="form-group">
         <label htmlFor="username">Username</label>

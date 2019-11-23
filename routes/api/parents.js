@@ -13,4 +13,8 @@ router
   .put(parentController.update)
   .delete(parentController.remove);
 
+router
+  .route("/code/:code")
+  .get(parentController.findByCode);
+
 module.exports = router;

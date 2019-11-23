@@ -29,6 +29,8 @@ class SteppedForm extends React.Component {
       welcome:'',
       rules:'',
       code:'',
+      aboutfamily:'',
+      aboutyou:'',
       
       
 
@@ -70,7 +72,9 @@ class SteppedForm extends React.Component {
         usstate:this.state.usstate,
         welcome:this.state.welcome,
         rules:this.state.rules,
-        code: this.state.code,
+        aboutfamily:this.state.aboutfamily,
+        aboutyou:this.state.aboutyou,
+        code: (Math.floor(1000 + Math.random() * 9000)).toString(),
 
       })
         .then(res => {
@@ -172,13 +176,13 @@ class SteppedForm extends React.Component {
             username={this.state.username}
             email={this.state.email}
             password={this.state.password}
+            familyname={this.state.familyname}
             phone={this.state.phone}
 
           />
           <Step3
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
-            familyname={this.state.familyname}
             usstate={this.state.usstate}
 
           />
@@ -186,6 +190,8 @@ class SteppedForm extends React.Component {
           <Step4
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
+            aboutfamily={this.state.aboutfamily}
+            aboutyou={this.state.aboutyou}
           />
 
           <Step5
@@ -236,7 +242,7 @@ function Step2(props) {
     <div className="all">
       <div className="form-group">
         <h2>Create your Account</h2>
-        <label htmlFor="firstname">Name</label>
+        <label htmlFor="firstname">First Name</label>
         <input
           className="form-control"
           id="firstname"
@@ -244,6 +250,19 @@ function Step2(props) {
           type="text"
           placeholder="Enter your first name"
           value={props.firstname}
+          onChange={props.handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="familyname">Family Name</label>
+        <input
+          className="form-control"
+          id="familyname"
+          name="familyname"
+          type="text"
+          placeholder="Example 'Hernandez'"
+          value={props.familyname}
           onChange={props.handleChange}
         />
       </div>
@@ -319,18 +338,7 @@ function Step3(props) {
   return (
     <div className="step3">
       <h2>Build Your Home Profile</h2>
-      <div className="form-groupt">
-        <label htmlFor="familyname">Family Name</label>
-        <input
-          className="form-control"
-          id="familyname"
-          name="familyname"
-          type="text"
-          placeholder="Example 'The Hernandez Family'"
-          value={props.familyname}
-          onChange={props.handleChange}
-        />
-      </div>
+
 
       <div className="form-group">
         <label for="occupation">Your Occupation</label>
@@ -465,6 +473,33 @@ function Step4(props) {
         />
       </div>
 
+      <div className="form-group">
+        <label htmlFor="aboutfamily">About Your Family</label>
+        <p>Give a description of your family so your foster kids can learn about you. It can be about other family members, where you live or anything.</p>
+        <textarea
+          className="form-control materialize-textarea"
+          id="aboutfamily"
+          name="aboutfamily"
+          type="text"
+          placeholder="a bit about your family"
+          value={props.aboutfamily}
+          onChange={props.handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="aboutyou">About You</label>
+        <p>These are expectations you have of kids like not running or lying or getting grounded for misbheavior at school. Maybe a rule is you have game nights on Fridays.</p>
+        <textarea
+          className="form-control materialize-textarea"
+          id="aboutyou"
+          name="aboutyou"
+          type="text"
+          placeholder="a bit about yourself"
+          value={props.aboutyou}
+          onChange={props.handleChange}
+        />
+      </div>
       <div className="form-group">
         <label htmlFor="rules">House Rules</label>
         <p>These are expectations you have of kids like not running or lying or getting grounded for misbheavior at school. Maybe a rule is you have game nights on Fridays.</p>

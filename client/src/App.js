@@ -14,6 +14,9 @@ import ChildView from "./components/ChildView";
 import KidPortal from "./pages/KidPortal";
 import KidJournal from "./pages/KidJournal";
 import KidHomes from "./pages/KidHomes";
+import KidHomeRules from "./pages/KidHomeRules";
+import KidNotifications from "./pages/KidNotifications";
+import KidPortalEdit from "./pages/KidPortalEdit";
 
 function App() {
 
@@ -31,8 +34,11 @@ function App() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/kidsignup" component={KidSignUp}/>
           <Route exact path="/kidportal/" component={KidPortal}/>
+          <Route exact path="/kidprofile/" component={KidPortalEdit}/>          
           <Route exact path="/kidjournal/" component={KidJournal}/>
           <Route exact path="/kidhomes/" component={KidHomes}/>
+          <Route exact path="/kidhomerules/" component={KidHomeRules}/>
+          <Route exact path="/kidnotifications/" component={KidNotifications}/>
           <Route component={NoMatch} />
         </Switch>
       </div>
