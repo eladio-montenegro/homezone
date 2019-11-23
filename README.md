@@ -37,6 +37,18 @@ Keep track of coins earned for good behavior
 Send private notes to foster parents
 Learn about foster home rules 
 
+Profile
+<img width="625" alt="Screen Shot 2019-11-23 at 9 53 59 AM" src="https://user-images.githubusercontent.com/50347922/69481476-52698c00-0dd7-11ea-921c-626d1024ceb0.png">
+
+Parent Code
+
+<img width="396" alt="Screen Shot 2019-11-23 at 9 56 07 AM" src="https://user-images.githubusercontent.com/50347922/69481518-a07e8f80-0dd7-11ea-8611-315fd93eab87.png">
+
+Journal
+
+<img width="950" alt="Screen Shot 2019-11-23 at 9 59 04 AM" src="https://user-images.githubusercontent.com/50347922/69481562-0408bd00-0dd8-11ea-8977-99e80350f46d.png">
+
+
 ## Benefits for Foster Kids
 No need to share basic information about yourself with new foster parents
 Get rewarded for good behavior
