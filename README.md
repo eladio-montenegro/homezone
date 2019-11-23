@@ -29,6 +29,8 @@ Easily communicate your house rules
 Learn about your foster kids without pulling teeth
 Implement a behavior system backed by child psychologists
 
+<img width="625" alt="hzParent" src="https://user-images.githubusercontent.com/50347922/69481270-7af08680-0dd5-11ea-9934-35862bf5952f.png">
+
 ## Features for Foster Kids
 Create a HomeZone Profile
 Keep track of coins earned for good behavior
